@@ -10,6 +10,13 @@
 	<string>46</string>
 	<key>objects</key>
 	<dict>
+		<key>0EB0FA7FCD844E66AAFEB648</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3DFD81DCAB624E8B84B14AE4</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>3DB54F37C00C4E0C854A1730</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -53,12 +60,66 @@ fi
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
+		<key>52B84AE6C2B147FF85B14EC8</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Pods-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
 		<key>7B54C3EB1206429590D25CA2</key>
 		<dict>
 			<key>fileRef</key>
 			<string>3DFD81DCAB624E8B84B14AE4</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+		</dict>
+		<key>8B75BA29429045D38A385D17</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Check Pods Manifest.lock</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
+if [[ $? != 0 ]] ; then
+    cat &lt;&lt; EOM
+error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
+EOM
+    exit 1
+fi
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
 		</dict>
 		<key>DF828E3BF23245A3BCEDF6FF</key>
 		<dict>
@@ -79,6 +140,8 @@ fi
 		<dict>
 			<key>children</key>
 			<array>
+				<string>E744DB3B18FFD3D000D3F7E6</string>
+				<string>E744DB3718FFC38200D3F7E6</string>
 				<string>E71D2ACF18FFC11F00D8C1EE</string>
 				<string>E71D2AF118FFC11F00D8C1EE</string>
 				<string>E71D2AC818FFC11F00D8C1EE</string>
@@ -160,6 +223,7 @@ fi
 			<array>
 				<string>E71D2AE318FFC11F00D8C1EE</string>
 				<string>E71D2ADA18FFC11F00D8C1EE</string>
+				<string>E73B8A3818FFD9440038C01B</string>
 				<string>E71D2AD618FFC11F00D8C1EE</string>
 			</array>
 			<key>isa</key>
@@ -416,10 +480,14 @@ fi
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
+			<key>lineEnding</key>
+			<string>0</string>
 			<key>path</key>
 			<string>main.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+			<key>xcLanguageSpecificationIdentifier</key>
+			<string>xcode.lang.objc</string>
 		</dict>
 		<key>E71D2AD618FFC11F00D8C1EE</key>
 		<dict>
@@ -445,10 +513,14 @@ fi
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
+			<key>lineEnding</key>
+			<string>0</string>
 			<key>path</key>
 			<string>AppDelegate.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+			<key>xcLanguageSpecificationIdentifier</key>
+			<string>xcode.lang.objcpp</string>
 		</dict>
 		<key>E71D2AD918FFC11F00D8C1EE</key>
 		<dict>
@@ -456,10 +528,14 @@ fi
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
+			<key>lineEnding</key>
+			<string>0</string>
 			<key>path</key>
 			<string>AppDelegate.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+			<key>xcLanguageSpecificationIdentifier</key>
+			<string>xcode.lang.objc</string>
 		</dict>
 		<key>E71D2ADA18FFC11F00D8C1EE</key>
 		<dict>
@@ -540,10 +616,14 @@ fi
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
+			<key>lineEnding</key>
+			<string>0</string>
 			<key>path</key>
 			<string>ViewController.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+			<key>xcLanguageSpecificationIdentifier</key>
+			<string>xcode.lang.objcpp</string>
 		</dict>
 		<key>E71D2AE218FFC11F00D8C1EE</key>
 		<dict>
@@ -551,10 +631,14 @@ fi
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
+			<key>lineEnding</key>
+			<string>0</string>
 			<key>path</key>
 			<string>ViewController.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+			<key>xcLanguageSpecificationIdentifier</key>
+			<string>xcode.lang.objc</string>
 		</dict>
 		<key>E71D2AE318FFC11F00D8C1EE</key>
 		<dict>
@@ -603,6 +687,7 @@ fi
 				<string>E71D2AEC18FFC11F00D8C1EE</string>
 				<string>E71D2AEE18FFC11F00D8C1EE</string>
 				<string>E71D2AED18FFC11F00D8C1EE</string>
+				<string>0EB0FA7FCD844E66AAFEB648</string>
 			</array>
 			<key>isa</key>
 			<string>PBXFrameworksBuildPhase</string>
@@ -628,9 +713,11 @@ fi
 			<string>E71D2AFE18FFC11F00D8C1EE</string>
 			<key>buildPhases</key>
 			<array>
+				<string>8B75BA29429045D38A385D17</string>
 				<string>E71D2AE618FFC11F00D8C1EE</string>
 				<string>E71D2AE718FFC11F00D8C1EE</string>
 				<string>E71D2AE818FFC11F00D8C1EE</string>
+				<string>52B84AE6C2B147FF85B14EC8</string>
 			</array>
 			<key>buildRules</key>
 			<array/>
@@ -796,10 +883,14 @@ fi
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
+			<key>lineEnding</key>
+			<string>0</string>
 			<key>path</key>
 			<string>Addressbook_iOSTests.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+			<key>xcLanguageSpecificationIdentifier</key>
+			<string>xcode.lang.objc</string>
 		</dict>
 		<key>E71D2AF818FFC11F00D8C1EE</key>
 		<dict>
@@ -954,6 +1045,8 @@ fi
 			</array>
 			<key>defaultConfigurationIsVisible</key>
 			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
@@ -1022,11 +1115,15 @@ fi
 			</array>
 			<key>defaultConfigurationIsVisible</key>
 			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
 		<key>E71D2AFF18FFC11F00D8C1EE</key>
 		<dict>
+			<key>baseConfigurationReference</key>
+			<string>DF828E3BF23245A3BCEDF6FF</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>BUNDLE_LOADER</key>
@@ -1062,6 +1159,8 @@ fi
 		</dict>
 		<key>E71D2B0018FFC11F00D8C1EE</key>
 		<dict>
+			<key>baseConfigurationReference</key>
+			<string>DF828E3BF23245A3BCEDF6FF</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>BUNDLE_LOADER</key>
@@ -1089,6 +1188,68 @@ fi
 			<string>XCBuildConfiguration</string>
 			<key>name</key>
 			<string>Release</string>
+		</dict>
+		<key>E73B8A3618FFD9440038C01B</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>G0VAddressbookClient.h</string>
+			<key>path</key>
+			<string>Classes/G0VAddressbookClient.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E73B8A3718FFD9440038C01B</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>G0VAddressbookClient.m</string>
+			<key>path</key>
+			<string>Classes/G0VAddressbookClient.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E73B8A3818FFD9440038C01B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E73B8A3718FFD9440038C01B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E744DB3718FFC38200D3F7E6</key>
+		<dict>
+			<key>children</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Model</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E744DB3B18FFD3D000D3F7E6</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E73B8A3618FFD9440038C01B</string>
+				<string>E73B8A3718FFD9440038C01B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>G0VAddressbook</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>FBD46789304B43BFB859BD59</key>
 		<dict>

@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "G0VAddressbookClient.h"
 
 @interface Addressbook_iOSTests : XCTestCase
 
@@ -26,9 +27,12 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testOrgs
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    [[[G0VAddressbookClient sharedClient] fetchOrganizations] continueWithBlock:^id(BFTask *task) {
+        NSLog(@"count for data: %d", [task.result count]);
+        return nil;
+    }];
 }
 
 @end
