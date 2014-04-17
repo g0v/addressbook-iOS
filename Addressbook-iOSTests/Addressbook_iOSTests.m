@@ -18,21 +18,27 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
 - (void)tearDown
 {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
 
 - (void)testOrgs
 {
+    __block BOOL looping = YES;
+
     [[[G0VAddressbookClient sharedClient] fetchOrganizations] continueWithBlock:^id(BFTask *task) {
-        NSLog(@"count for data: %d", [task.result count]);
+        looping = NO;
+        XCTAssertNil(task.error, @"There should not be any error.");
+        XCTAssertNotNil(task.result, @"There should had result.");
         return nil;
     }];
+
+    while (looping) {
+		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.2]];
+	}
 }
 
 @end
