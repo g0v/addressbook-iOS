@@ -36,7 +36,18 @@
 
         NSArray *popoloOrgs = task.result;
         for (NSDictionary *onePopolo in popoloOrgs) {
-            NSLog(@"name:%@", [onePopolo valueForKeyPath:@"name"]);
+
+            NSString *identifierOfOnePopolo = [onePopolo valueForKeyPath:@"id"];
+            XCTAssertNotNil(identifierOfOnePopolo, @"This must had value.");
+
+            NSString *name = [onePopolo valueForKeyPath:@"name"];
+            XCTAssertNotNil(name, @"This should had name.");
+
+            // got identifiers
+            NSLog(@"identifiers: %@", [onePopolo valueForKeyPath:@"identifiers.identifier"]);
+
+            // got contact_details
+            NSLog(@"Contact details: %@", [onePopolo valueForKeyPath:@"contact_details.value"]);
         }
         return nil;
     }];
