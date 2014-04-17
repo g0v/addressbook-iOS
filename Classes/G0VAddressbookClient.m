@@ -52,7 +52,7 @@
 
 - (instancetype)init
 {
-    self = [super initWithBaseURL:[NSURL URLWithString:@"http://pgrest.io/hychen/api.addressbook/v0/"]];
+    self = [super initWithBaseURL:[NSURL URLWithString:@"http://pgrest.io/hychen/api.addressbook/v0/collections/"]];
     if (self) {
         self.requestSerializer = [AFHTTPRequestSerializer serializer];
 		self.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -60,10 +60,10 @@
     return self;
 }
 
-- (BFTask *)_taskWithPath:(NSString *)inPath
+- (BFTask *)_taskWithPath:(NSString *)inPath parameters:(NSDictionary *)parameters
 {
 	G0VABTaskCompletionSource *source = [G0VABTaskCompletionSource taskCompletionSource];
-	source.connectionTask = [self GET:inPath parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+	source.connectionTask = [self GET:inPath parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
 		if (responseObject) {
             NSArray *entries = [responseObject objectForKey:@"entries"];
             [source setResult:entries];
@@ -82,14 +82,13 @@
 
 - (BFTask *)fetchOrganizations
 {
-    return [self _taskWithPath:@"collections/organizations"];
+    return [self _taskWithPath:@"organizations" parameters:nil];
 }
 
 - (BFTask *)fetchOrganizationsWithMatchesString:(NSString *)matchesString
 {
-    NSString *quretyStringWithMatchingString = [NSString stringWithFormat:@"collections/organizations?q={\"name\":{\"$matches\":\"%@\"}}", matchesString];
-    NSString *encodeQueryString = [quretyStringWithMatchingString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    return [self _taskWithPath:encodeQueryString];
+    NSString *quretyStringWithMatchingString = [NSString stringWithFormat:@"{\"name\":{\"$matches\":\"%@\"}}", matchesString];
+    return [self _taskWithPath:@"organizations" parameters:@{@"q":quretyStringWithMatchingString}];
 }
 
 @end
