@@ -6,6 +6,7 @@
 //
 
 #import "G0VAddressbookClient.h"
+#import "POrganization.h"
 
 @interface G0VABTaskCompletionSource : BFTaskCompletionSource
 + (G0VABTaskCompletionSource *)taskCompletionSource;
@@ -65,7 +66,9 @@
 	G0VABTaskCompletionSource *source = [G0VABTaskCompletionSource taskCompletionSource];
 	source.connectionTask = [self GET:inPath parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
 		if (responseObject) {
-            [source setResult:[responseObject objectForKey:@"entries"]];
+            NSArray *entries = [responseObject objectForKey:@"entries"];
+            POrganization *firstData = [[POrganization alloc] initWithDictionary:[entries firstObject]];
+            [source setResult:firstData];
 		}
 	} failure:^(NSURLSessionDataTask *task, NSError *error) {
 		[source setError:error];
