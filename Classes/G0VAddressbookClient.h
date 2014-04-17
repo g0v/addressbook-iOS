@@ -20,4 +20,6 @@
 
 - (BFTask *)fetchOrganizations;
 
+- (BFTask *)fetchOrganizationsWithMatchesString:(NSString *)matchesString;
+
 @end

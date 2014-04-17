@@ -85,4 +85,11 @@
     return [self _taskWithPath:@"collections/organizations"];
 }
 
+- (BFTask *)fetchOrganizationsWithMatchesString:(NSString *)matchesString
+{
+    NSString *quretyStringWithMatchingString = [NSString stringWithFormat:@"collections/organizations?q={\"name\":{\"$matches\":\"%@\"}}", matchesString];
+    NSString *encodeQueryString = [quretyStringWithMatchingString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return [self _taskWithPath:encodeQueryString];
+}
+
 @end
