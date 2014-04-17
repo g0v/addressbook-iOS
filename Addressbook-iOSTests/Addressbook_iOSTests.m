@@ -33,6 +33,11 @@
         looping = NO;
         XCTAssertNil(task.error, @"There should not be any error.");
         XCTAssertNotNil(task.result, @"There should had result.");
+
+        NSArray *popoloOrgs = task.result;
+        for (NSDictionary *onePopolo in popoloOrgs) {
+            NSLog(@"name:%@", [onePopolo valueForKeyPath:@"name"]);
+        }
         return nil;
     }];
 

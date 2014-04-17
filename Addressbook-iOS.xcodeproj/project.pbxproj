@@ -25,7 +25,6 @@
 		E71D2AF618FFC11F00D8C1EE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E71D2AF418FFC11F00D8C1EE /* InfoPlist.strings */; };
 		E71D2AF818FFC11F00D8C1EE /* Addressbook_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E71D2AF718FFC11F00D8C1EE /* Addressbook_iOSTests.m */; };
 		E73B8A3818FFD9440038C01B /* G0VAddressbookClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E73B8A3718FFD9440038C01B /* G0VAddressbookClient.m */; };
-		E73B8A3B18FFDDA90038C01B /* POrganization.m in Sources */ = {isa = PBXBuildFile; fileRef = E73B8A3A18FFDDA90038C01B /* POrganization.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,8 +62,6 @@
 		E71D2AF718FFC11F00D8C1EE /* Addressbook_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Addressbook_iOSTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E73B8A3618FFD9440038C01B /* G0VAddressbookClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = G0VAddressbookClient.h; path = Classes/G0VAddressbookClient.h; sourceTree = "<group>"; };
 		E73B8A3718FFD9440038C01B /* G0VAddressbookClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = G0VAddressbookClient.m; path = Classes/G0VAddressbookClient.m; sourceTree = "<group>"; };
-		E73B8A3918FFDDA90038C01B /* POrganization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = POrganization.h; path = Classes/POrganization.h; sourceTree = "<group>"; };
-		E73B8A3A18FFDDA90038C01B /* POrganization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = POrganization.m; path = Classes/POrganization.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +94,6 @@
 			isa = PBXGroup;
 			children = (
 				E744DB3B18FFD3D000D3F7E6 /* G0VAddressbook */,
-				E744DB3718FFC38200D3F7E6 /* Model */,
 				E71D2ACF18FFC11F00D8C1EE /* Addressbook-iOS */,
 				E71D2AF118FFC11F00D8C1EE /* Addressbook-iOSTests */,
 				E71D2AC818FFC11F00D8C1EE /* Frameworks */,
@@ -169,15 +165,6 @@
 				E71D2AF418FFC11F00D8C1EE /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		E744DB3718FFC38200D3F7E6 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				E73B8A3918FFDDA90038C01B /* POrganization.h */,
-				E73B8A3A18FFDDA90038C01B /* POrganization.m */,
-			);
-			name = Model;
 			sourceTree = "<group>";
 		};
 		E744DB3B18FFD3D000D3F7E6 /* G0VAddressbook */ = {
@@ -355,7 +342,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E71D2AE318FFC11F00D8C1EE /* ViewController.m in Sources */,
-				E73B8A3B18FFDDA90038C01B /* POrganization.m in Sources */,
 				E71D2ADA18FFC11F00D8C1EE /* AppDelegate.m in Sources */,
 				E73B8A3818FFD9440038C01B /* G0VAddressbookClient.m in Sources */,
 				E71D2AD618FFC11F00D8C1EE /* main.m in Sources */,
