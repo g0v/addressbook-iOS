@@ -7,9 +7,48 @@
 
 #import "G0VAddressbookClient.h"
 
+static NSString *kPaging = @"paging";
+static NSString *kEntries = @"entries";
+
+static NSString *kCount = @"count";
+static NSString *kOffset = @"sk";
+static NSString *kLength = @"l";
+
+@interface NSDictionary (Paging)
+- (BOOL)haveMorePage;
+@end
+
+@implementation NSDictionary (Paging)
+
+- (long)count
+{
+    return [[self valueForKeyPath:kCount] longValue];
+}
+
+- (long)pageLength
+{
+    return 2000;
+    return [[self valueForKeyPath:kLength] longValue];
+}
+
+- (long)offset
+{
+    return [[self valueForKeyPath:kOffset] longValue];
+}
+
+- (BOOL)haveMorePage
+{
+    return self.offset + self.pageLength < self.count;
+}
+
+@end
+
+#pragma mark -
+
 @interface G0VABTaskCompletionSource : BFTaskCompletionSource
 + (G0VABTaskCompletionSource *)taskCompletionSource;
 @property (strong, nonatomic) NSURLSessionTask *connectionTask;
+
 @end
 
 @implementation G0VABTaskCompletionSource
@@ -57,13 +96,28 @@
     return self;
 }
 
-- (BFTask *)_taskWithPath:(NSString *)inPath parameters:(NSDictionary *)parameters
+- (BFTask *)_taskWithPath:(NSString *)inPath parameters:(NSDictionary *)parameters lastEntries:(NSArray *)lastEntries
 {
 	G0VABTaskCompletionSource *source = [G0VABTaskCompletionSource taskCompletionSource];
 	source.connectionTask = [self GET:inPath parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
 		if (responseObject) {
-            NSArray *entries = [responseObject objectForKey:@"entries"];
-            [source setResult:entries];
+            NSDictionary *paging = [responseObject objectForKey:kPaging];
+
+            NSArray *entries = [responseObject objectForKey:kEntries];
+
+            if (paging.haveMorePage) {
+                NSNumber *newOffset = [NSNumber numberWithLongLong:paging.offset + paging.pageLength];
+                NSLog(@"newOffset: %@ last entries: %d entries: %d", newOffset, lastEntries.count, entries.count);
+                NSArray *newEntries = [lastEntries arrayByAddingObjectsFromArray:entries];
+
+                [[self _taskWithPath:inPath
+                          parameters:@{ kOffset : newOffset, kLength : @(paging.pageLength) }
+                         lastEntries:newEntries] continueWithBlock:^id(BFTask *task) {
+                    return nil;
+                }];
+            } else {
+                [source setResult:entries];
+            }
 		}
 	} failure:^(NSURLSessionDataTask *task, NSError *error) {
 		[source setError:error];
@@ -79,13 +133,13 @@
 
 - (BFTask *)fetchOrganizations
 {
-    return [self _taskWithPath:@"organizations" parameters:nil];
+    return [self _taskWithPath:@"organizations" parameters:nil lastEntries:nil];
 }
 
 - (BFTask *)fetchOrganizationsWithMatchesString:(NSString *)matchesString
 {
     NSString *quretyStringWithMatchingString = [NSString stringWithFormat:@"{\"name\":{\"$matches\":\"%@\"}}", matchesString];
-    return [self _taskWithPath:@"organizations" parameters:@{@"q":quretyStringWithMatchingString}];
+    return [self _taskWithPath:@"organizations" parameters:@{@"q":quretyStringWithMatchingString} lastEntries:nil];
 }
 
 @end
