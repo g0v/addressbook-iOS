@@ -12,8 +12,6 @@
 
 + (instancetype)sharedClient;
 
-+ (NSString *)version;
-
 @end
 
 @interface G0VAddressbookClient (Organization)

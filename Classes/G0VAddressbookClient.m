@@ -33,12 +33,9 @@
 
 @end
 
-@implementation G0VAddressbookClient
+#pragma mark - G0VAddressbookClient
 
-+ (NSString *)version
-{
-    return @"0.1.0";
-}
+@implementation G0VAddressbookClient
 
 + (instancetype)sharedClient
 {
