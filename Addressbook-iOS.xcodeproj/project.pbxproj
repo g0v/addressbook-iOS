@@ -17,7 +17,6 @@
 		E71D2ADA18FFC11F00D8C1EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E71D2AD918FFC11F00D8C1EE /* AppDelegate.m */; };
 		E71D2ADD18FFC11F00D8C1EE /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E71D2ADB18FFC11F00D8C1EE /* Main_iPhone.storyboard */; };
 		E71D2AE018FFC11F00D8C1EE /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E71D2ADE18FFC11F00D8C1EE /* Main_iPad.storyboard */; };
-		E71D2AE318FFC11F00D8C1EE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71D2AE218FFC11F00D8C1EE /* ViewController.m */; };
 		E71D2AE518FFC11F00D8C1EE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E71D2AE418FFC11F00D8C1EE /* Images.xcassets */; };
 		E71D2AEC18FFC11F00D8C1EE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E71D2AEB18FFC11F00D8C1EE /* XCTest.framework */; };
 		E71D2AED18FFC11F00D8C1EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E71D2AC918FFC11F00D8C1EE /* Foundation.framework */; };
@@ -25,6 +24,7 @@
 		E71D2AF618FFC11F00D8C1EE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E71D2AF418FFC11F00D8C1EE /* InfoPlist.strings */; };
 		E71D2AF818FFC11F00D8C1EE /* Addressbook_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E71D2AF718FFC11F00D8C1EE /* Addressbook_iOSTests.m */; };
 		E73B8A3818FFD9440038C01B /* G0VAddressbookClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E73B8A3718FFD9440038C01B /* G0VAddressbookClient.m */; };
+		E901C29019023D4800804380 /* SearchListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E901C28F19023D4800804380 /* SearchListViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,8 +52,6 @@
 		E71D2AD918FFC11F00D8C1EE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E71D2ADC18FFC11F00D8C1EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		E71D2ADF18FFC11F00D8C1EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		E71D2AE118FFC11F00D8C1EE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		E71D2AE218FFC11F00D8C1EE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E71D2AE418FFC11F00D8C1EE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E71D2AEA18FFC11F00D8C1EE /* Addressbook-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Addressbook-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E71D2AEB18FFC11F00D8C1EE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -62,6 +60,8 @@
 		E71D2AF718FFC11F00D8C1EE /* Addressbook_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Addressbook_iOSTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E73B8A3618FFD9440038C01B /* G0VAddressbookClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = G0VAddressbookClient.h; path = Classes/G0VAddressbookClient.h; sourceTree = "<group>"; };
 		E73B8A3718FFD9440038C01B /* G0VAddressbookClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = G0VAddressbookClient.m; path = Classes/G0VAddressbookClient.m; sourceTree = "<group>"; };
+		E901C28E19023D4800804380 /* SearchListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchListViewController.h; sourceTree = "<group>"; };
+		E901C28F19023D4800804380 /* SearchListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,12 +126,11 @@
 		E71D2ACF18FFC11F00D8C1EE /* Addressbook-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				E9AA121F1900293F00996225 /* VCs */,
 				E71D2AD818FFC11F00D8C1EE /* AppDelegate.h */,
 				E71D2AD918FFC11F00D8C1EE /* AppDelegate.m */,
 				E71D2ADB18FFC11F00D8C1EE /* Main_iPhone.storyboard */,
 				E71D2ADE18FFC11F00D8C1EE /* Main_iPad.storyboard */,
-				E71D2AE118FFC11F00D8C1EE /* ViewController.h */,
-				E71D2AE218FFC11F00D8C1EE /* ViewController.m */,
 				E71D2AE418FFC11F00D8C1EE /* Images.xcassets */,
 				E71D2AD018FFC11F00D8C1EE /* Supporting Files */,
 			);
@@ -174,6 +173,15 @@
 				E73B8A3718FFD9440038C01B /* G0VAddressbookClient.m */,
 			);
 			name = G0VAddressbook;
+			sourceTree = "<group>";
+		};
+		E9AA121F1900293F00996225 /* VCs */ = {
+			isa = PBXGroup;
+			children = (
+				E901C28E19023D4800804380 /* SearchListViewController.h */,
+				E901C28F19023D4800804380 /* SearchListViewController.m */,
+			);
+			name = VCs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,7 +349,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E71D2AE318FFC11F00D8C1EE /* ViewController.m in Sources */,
+				E901C29019023D4800804380 /* SearchListViewController.m in Sources */,
 				E71D2ADA18FFC11F00D8C1EE /* AppDelegate.m in Sources */,
 				E73B8A3818FFD9440038C01B /* G0VAddressbookClient.m in Sources */,
 				E71D2AD618FFC11F00D8C1EE /* main.m in Sources */,

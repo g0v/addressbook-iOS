@@ -45,6 +45,13 @@
         // got contact_details
         NSLog(@"contact details: %@", [onePopolo valueForKeyPath:@"contact_details.value"]);
     }
+    
+    /*
+     [onePopolo valueForKeyPath:@"id"];
+     [onePopolo valueForKeyPath:@"name"];
+     [onePopolo valueForKeyPath:@"identifiers.identifier"];
+     [onePopolo valueForKeyPath:@"contact_details.value"];
+     */
 }
 
 - (void)testOrgs
