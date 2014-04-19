@@ -29,7 +29,8 @@ static NSString *govCellReuseIdentifier = @"govCellReuseIdentifier";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+//    NSLog(@"self.organizations :%@",self.organizations);
 }
 
 
@@ -52,19 +53,13 @@ static NSString *govCellReuseIdentifier = @"govCellReuseIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:govCellReuseIdentifier forIndexPath:indexPath];
     
     if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:govCellReuseIdentifier];
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:govCellReuseIdentifier];
     }
     
     NSDictionary *orgDic = self.organizations[indexPath.row];
     NSString *name = [orgDic valueForKeyPath:@"name"];
-    NSString *identifier = [orgDic valueForKeyPath:@"identifiers.identifier"];
-    NSString *detail = [orgDic valueForKeyPath:@"contact_details.value"];
     
-    
-    NSLog(@"identifier :%@",identifier);
     cell.textLabel.text = name;
-    cell.detailTextLabel.text = detail;
-    
     return cell;
 }
 

@@ -16,6 +16,7 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
 @property (weak, nonatomic) IBOutlet UIImageView *govImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *personImageView;
 @property (nonatomic, strong) NSArray *organizations;
+
 @end
 
 @implementation SearchListViewController
@@ -42,6 +43,7 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
     /* 傳遞搜尋結果 */
     if ([segue.identifier isEqualToString:PushToSearchResultIdentifier]) {
         SearchResultViewController *srVC = segue.destinationViewController;
+        srVC.title = self.searchTextField.text;
         srVC.organizations = self.organizations;
     }
 }
@@ -63,7 +65,7 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
         
         /* 錯誤檢查 */
         
-//        NSLog(@"task.result:%@",task.result);
+        NSLog(@"task.result:%@",task.result);
         
         if(!task.result){
             
