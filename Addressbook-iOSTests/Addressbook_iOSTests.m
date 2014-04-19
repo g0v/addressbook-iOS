@@ -78,4 +78,20 @@
 	}
 }
 
+- (void)testPersonsWithMatchesString
+{
+    NSString *matchesString = @"張";
+    __block BOOL looping = YES;
+
+    [[[G0VAddressbookClient sharedClient] fetchPersonsWithMatchingString:matchesString] continueWithBlock:^id(BFTask *task) {
+        looping = NO;
+        [self checkResultWithTask:task];
+        return nil;
+    }];
+
+    while (looping) {
+		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.2]];
+	}
+}
+
 @end

@@ -143,3 +143,20 @@ static NSString *kLength = @"l";
 }
 
 @end
+
+#pragma mark - Person
+
+@implementation G0VAddressbookClient (Person)
+
+- (BFTask *)fetchPersons
+{
+    return [self _taskWithPath:@"person" parameters:nil lastEntries:nil];
+}
+
+- (BFTask *)fetchPersonsWithMatchingString:(NSString *)matchesString
+{
+    NSString *quretyStringWithMatchingString = [NSString stringWithFormat:@"{\"name\":{\"$matches\":\"%@\"}}", matchesString];
+    return [self _taskWithPath:@"person" parameters:@{@"q":quretyStringWithMatchingString} lastEntries:nil];
+}
+
+@end

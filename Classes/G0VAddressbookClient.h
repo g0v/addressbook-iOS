@@ -21,3 +21,11 @@
 - (BFTask *)fetchOrganizationsWithMatchesString:(NSString *)matchesString;
 
 @end
+
+@interface G0VAddressbookClient (Person)
+
+- (BFTask *)fetchPersons;
+
+- (BFTask *)fetchPersonsWithMatchingString:(NSString *)matchesString;
+
+@end
