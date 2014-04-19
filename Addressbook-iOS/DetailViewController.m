@@ -8,11 +8,15 @@
 
 #import "DetailViewController.h"
 
+
+
 @interface DetailViewController ()
 @property (weak, nonatomic) IBOutlet UITableViewCell *profileImageCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *telephoneCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *addressCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *emailCell;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *partyImageView;
 
 @end
 
@@ -30,8 +34,33 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.title = [self.organization valueForKeyPath:@"name"];
+    
+    /* 找尋電話 */
+    NSArray *contactDetails = [self.organization valueForKeyPath:@"contact_details"];
+    
+    NSString *phone;
+    
+    for(NSDictionary *contact in contactDetails){
+        
+        if ([[contact valueForKey:@"type"] isEqualToString:@"voice"]) {
+        
+            phone = [contact valueForKey:@"value"];
+        
+            break;
+            
+        }
+        
+    }
+    
+    if (!phone || phone.length==0) {
+        
+    }
+    
+    self.telephoneCell.detailTextLabel.text = phone;
+    
+    
+    
+    
 //    NSString *identifierOfOnePopolo = [onePopolo valueForKeyPath:@"id"];
 //    XCTAssertNotNil(identifierOfOnePopolo, @"This must had value.");
 //    
@@ -45,6 +74,10 @@
 //    NSLog(@"contact details: %@", [onePopolo valueForKeyPath:@"contact_details.value"]);
 
     
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
 }
 
 

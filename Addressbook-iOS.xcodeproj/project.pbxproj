@@ -26,6 +26,11 @@
 		E73B8A3818FFD9440038C01B /* G0VAddressbookClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E73B8A3718FFD9440038C01B /* G0VAddressbookClient.m */; };
 		E901C29019023D4800804380 /* SearchListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E901C28F19023D4800804380 /* SearchListViewController.m */; };
 		E901C293190242FB00804380 /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E901C292190242FB00804380 /* SearchResultViewController.m */; };
+		E91582D519026C8400A90465 /* Screen Shot 2014-04-19 at 4.31.10 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = E91582D119026C8400A90465 /* Screen Shot 2014-04-19 at 4.31.10 PM.png */; };
+		E91582D619026C8400A90465 /* Screen Shot 2014-04-19 at 4.31.18 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = E91582D219026C8400A90465 /* Screen Shot 2014-04-19 at 4.31.18 PM.png */; };
+		E91582D719026C8400A90465 /* Screen Shot 2014-04-19 at 4.31.24 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = E91582D319026C8400A90465 /* Screen Shot 2014-04-19 at 4.31.24 PM.png */; };
+		E91582D819026C8400A90465 /* Screen Shot 2014-04-19 at 4.31.27 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = E91582D419026C8400A90465 /* Screen Shot 2014-04-19 at 4.31.27 PM.png */; };
+		E91582DA19026E7E00A90465 /* pattern.png in Resources */ = {isa = PBXBuildFile; fileRef = E91582D919026E7E00A90465 /* pattern.png */; };
 		E9F1D26D19025EB000DF2096 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F1D26C19025EB000DF2096 /* DetailViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +71,11 @@
 		E901C28F19023D4800804380 /* SearchListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchListViewController.m; sourceTree = "<group>"; };
 		E901C291190242FB00804380 /* SearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultViewController.h; sourceTree = "<group>"; };
 		E901C292190242FB00804380 /* SearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultViewController.m; sourceTree = "<group>"; };
+		E91582D119026C8400A90465 /* Screen Shot 2014-04-19 at 4.31.10 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Screen Shot 2014-04-19 at 4.31.10 PM.png"; path = "Addressbook-iOS/Image/Screen Shot 2014-04-19 at 4.31.10 PM.png"; sourceTree = "<group>"; };
+		E91582D219026C8400A90465 /* Screen Shot 2014-04-19 at 4.31.18 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Screen Shot 2014-04-19 at 4.31.18 PM.png"; path = "Addressbook-iOS/Image/Screen Shot 2014-04-19 at 4.31.18 PM.png"; sourceTree = "<group>"; };
+		E91582D319026C8400A90465 /* Screen Shot 2014-04-19 at 4.31.24 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Screen Shot 2014-04-19 at 4.31.24 PM.png"; path = "Addressbook-iOS/Image/Screen Shot 2014-04-19 at 4.31.24 PM.png"; sourceTree = "<group>"; };
+		E91582D419026C8400A90465 /* Screen Shot 2014-04-19 at 4.31.27 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Screen Shot 2014-04-19 at 4.31.27 PM.png"; path = "Addressbook-iOS/Image/Screen Shot 2014-04-19 at 4.31.27 PM.png"; sourceTree = "<group>"; };
+		E91582D919026E7E00A90465 /* pattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pattern.png; path = "Addressbook-iOS/Image/pattern.png"; sourceTree = "<group>"; };
 		E9F1D26B19025EB000DF2096 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		E9F1D26C19025EB000DF2096 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -99,6 +109,7 @@
 		E71D2ABD18FFC11F00D8C1EE = {
 			isa = PBXGroup;
 			children = (
+				E91582D019026C4300A90465 /* Image */,
 				E744DB3B18FFD3D000D3F7E6 /* G0VAddressbook */,
 				E71D2ACF18FFC11F00D8C1EE /* Addressbook-iOS */,
 				E71D2AF118FFC11F00D8C1EE /* Addressbook-iOSTests */,
@@ -179,6 +190,18 @@
 				E73B8A3718FFD9440038C01B /* G0VAddressbookClient.m */,
 			);
 			name = G0VAddressbook;
+			sourceTree = "<group>";
+		};
+		E91582D019026C4300A90465 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				E91582D919026E7E00A90465 /* pattern.png */,
+				E91582D119026C8400A90465 /* Screen Shot 2014-04-19 at 4.31.10 PM.png */,
+				E91582D219026C8400A90465 /* Screen Shot 2014-04-19 at 4.31.18 PM.png */,
+				E91582D319026C8400A90465 /* Screen Shot 2014-04-19 at 4.31.24 PM.png */,
+				E91582D419026C8400A90465 /* Screen Shot 2014-04-19 at 4.31.27 PM.png */,
+			);
+			name = Image;
 			sourceTree = "<group>";
 		};
 		E9AA121F1900293F00996225 /* VCs */ = {
@@ -275,9 +298,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E71D2AE018FFC11F00D8C1EE /* Main_iPad.storyboard in Resources */,
+				E91582D619026C8400A90465 /* Screen Shot 2014-04-19 at 4.31.18 PM.png in Resources */,
 				E71D2AE518FFC11F00D8C1EE /* Images.xcassets in Resources */,
 				E71D2ADD18FFC11F00D8C1EE /* Main_iPhone.storyboard in Resources */,
+				E91582D519026C8400A90465 /* Screen Shot 2014-04-19 at 4.31.10 PM.png in Resources */,
 				E71D2AD418FFC11F00D8C1EE /* InfoPlist.strings in Resources */,
+				E91582D719026C8400A90465 /* Screen Shot 2014-04-19 at 4.31.24 PM.png in Resources */,
+				E91582D819026C8400A90465 /* Screen Shot 2014-04-19 at 4.31.27 PM.png in Resources */,
+				E91582DA19026E7E00A90465 /* pattern.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
