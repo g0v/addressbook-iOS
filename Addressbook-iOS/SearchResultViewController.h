@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface SearchResultViewController : UIViewController
-
+@property (nonatomic, strong) NSArray *organizations;
 @end

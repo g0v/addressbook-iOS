@@ -25,6 +25,7 @@
 		E71D2AF818FFC11F00D8C1EE /* Addressbook_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E71D2AF718FFC11F00D8C1EE /* Addressbook_iOSTests.m */; };
 		E73B8A3818FFD9440038C01B /* G0VAddressbookClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E73B8A3718FFD9440038C01B /* G0VAddressbookClient.m */; };
 		E901C29019023D4800804380 /* SearchListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E901C28F19023D4800804380 /* SearchListViewController.m */; };
+		E901C293190242FB00804380 /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E901C292190242FB00804380 /* SearchResultViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,8 @@
 		E73B8A3718FFD9440038C01B /* G0VAddressbookClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = G0VAddressbookClient.m; path = Classes/G0VAddressbookClient.m; sourceTree = "<group>"; };
 		E901C28E19023D4800804380 /* SearchListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchListViewController.h; sourceTree = "<group>"; };
 		E901C28F19023D4800804380 /* SearchListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchListViewController.m; sourceTree = "<group>"; };
+		E901C291190242FB00804380 /* SearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultViewController.h; sourceTree = "<group>"; };
+		E901C292190242FB00804380 /* SearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +183,8 @@
 			children = (
 				E901C28E19023D4800804380 /* SearchListViewController.h */,
 				E901C28F19023D4800804380 /* SearchListViewController.m */,
+				E901C291190242FB00804380 /* SearchResultViewController.h */,
+				E901C292190242FB00804380 /* SearchResultViewController.m */,
 			);
 			name = VCs;
 			sourceTree = "<group>";
@@ -351,6 +356,7 @@
 			files = (
 				E901C29019023D4800804380 /* SearchListViewController.m in Sources */,
 				E71D2ADA18FFC11F00D8C1EE /* AppDelegate.m in Sources */,
+				E901C293190242FB00804380 /* SearchResultViewController.m in Sources */,
 				E73B8A3818FFD9440038C01B /* G0VAddressbookClient.m in Sources */,
 				E71D2AD618FFC11F00D8C1EE /* main.m in Sources */,
 			);

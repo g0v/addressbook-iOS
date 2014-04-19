@@ -8,7 +8,10 @@
 
 #import "SearchResultViewController.h"
 
-@interface SearchResultViewController ()
+static NSString *govCellReuseIdentifier = @"govCellReuseIdentifier";
+
+@interface SearchResultViewController () <UITableViewDelegate,UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -29,21 +32,42 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+    return 1;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    return self.organizations.count;
 }
-*/
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:govCellReuseIdentifier forIndexPath:indexPath];
+    
+    if (!cell) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:govCellReuseIdentifier];
+    }
+    
+    NSDictionary *orgDic = self.organizations[indexPath.row];
+    NSString *name = [orgDic valueForKeyPath:@"name"];
+    NSString *identifier = [orgDic valueForKeyPath:@"identifiers.identifier"];
+    NSString *detail = [orgDic valueForKeyPath:@"contact_details.value"];
+    
+    
+    NSLog(@"identifier :%@",identifier);
+    cell.textLabel.text = name;
+    cell.detailTextLabel.text = detail;
+    
+    return cell;
+}
+
+#pragma mark - Table View DataDelegate
 
 @end

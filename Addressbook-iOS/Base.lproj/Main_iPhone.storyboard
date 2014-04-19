@@ -19,6 +19,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nEk-aP-Cfh">
                                 <rect key="frame" x="20" y="308" width="120" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="0kq-nf-eb1"/>
                                     <constraint firstAttribute="width" constant="120" id="Q7U-6e-QGY"/>
@@ -27,26 +28,13 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Q6x-ph-Qsw">
                                 <rect key="frame" x="180" y="308" width="120" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="BOO-xV-egv"/>
                                     <constraint firstAttribute="width" constant="120" id="Ux0-nC-Wmj"/>
                                 </constraints>
                             </imageView>
-                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4hX-1X-pQe">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <tableView key="tableFooterView" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="PcM-ru-VIT">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <connections>
-                                        <outlet property="dataSource" destination="XQk-dW-GAx" id="lCr-pL-28q"/>
-                                        <outlet property="delegate" destination="XQk-dW-GAx" id="Aw9-As-jRW"/>
-                                    </connections>
-                                </tableView>
-                            </tableView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Please Enter Search Text" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M9x-5j-fuY">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="立法" borderStyle="roundedRect" placeholder="Please Enter Search Text" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M9x-5j-fuY">
                                 <rect key="frame" x="47" y="94" width="226" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
@@ -54,7 +42,12 @@
                                     <constraint firstAttribute="height" constant="30" id="T1e-84-mEE"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                <connections>
+                                    <action selector="TextFieldDidEndOnExit:" destination="XQk-dW-GAx" eventType="editingDidEndOnExit" id="tCe-iW-Sbg"/>
+                                    <action selector="searchTextFieldEditingDidEnd:" destination="XQk-dW-GAx" eventType="editingDidEnd" id="AbW-VG-WdP"/>
+                                    <outlet property="delegate" destination="XQk-dW-GAx" id="nkh-Uz-v2r"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -72,12 +65,41 @@
                         <outlet property="govImageView" destination="nEk-aP-Cfh" id="I3K-rB-ULw"/>
                         <outlet property="personImageView" destination="Q6x-ph-Qsw" id="UOH-SX-7eB"/>
                         <outlet property="searchTextField" destination="M9x-5j-fuY" id="GkZ-6C-LBF"/>
-                        <outlet property="tableView" destination="4hX-1X-pQe" id="6Rk-Oe-zRJ"/>
+                        <segue destination="bBE-RE-axg" kind="push" identifier="PushToSearchResultIdentifier" id="bhv-Yl-e6c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Knh-GE-wwr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1782" y="-902"/>
+            <point key="canvasLocation" x="1778" y="-902"/>
+        </scene>
+        <!--Search Result View Controller - Detail-->
+        <scene sceneID="zsf-gU-DbE">
+            <objects>
+                <viewController id="bBE-RE-axg" customClass="SearchResultViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pb5-QG-1yW"/>
+                        <viewControllerLayoutGuide type="bottom" id="SL2-vs-8XP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SNb-Ny-yTs">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jyB-1U-XaP">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Detail" id="dUY-H7-gkj"/>
+                    <connections>
+                        <outlet property="tableView" destination="jyB-1U-XaP" id="gBh-TT-uJW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EiN-jc-WMX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2208" y="-902"/>
         </scene>
         <!--Navigation Controller - GOV-->
         <scene sceneID="Bge-GT-FiK">

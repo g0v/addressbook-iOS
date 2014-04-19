@@ -7,12 +7,12 @@
 //
 
 #import "SearchListViewController.h"
+#import "SearchResultViewController.h"
 
-static NSString *govCellReuseIdentifier = @"govCellReuseIdentifier";
+static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
 
-@interface SearchListViewController () <UITableViewDelegate,UITableViewDataSource>
+@interface SearchListViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *govImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *personImageView;
 @property (nonatomic, strong) NSArray *organizations;
@@ -32,55 +32,56 @@ static NSString *govCellReuseIdentifier = @"govCellReuseIdentifier";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    BFTask *task = [[G0VAddressbookClient sharedClient] fetchOrganizations];
-    self.organizations = task.result;
-    
-    
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
-#pragma mark - Table view data source
+#pragma -
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
-    return 1;
+    /* 傳遞搜尋結果 */
+    if ([segue.identifier isEqualToString:PushToSearchResultIdentifier]) {
+        SearchResultViewController *srVC = segue.destinationViewController;
+        srVC.organizations = self.organizations;
+    }
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return self.organizations.count;
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (IBAction)searchTextFieldEditingDidEnd:(id)sender {
+    /* 搜尋 */
     
+    /* 錯誤檢查 */
+    NSString *searchText = self.searchTextField.text;
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:govCellReuseIdentifier forIndexPath:indexPath];
-    
-    if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:govCellReuseIdentifier];
+    if(!searchText || searchText.length==0){
+        [sender resignFirstResponder];
+        return;
     }
     
-    NSDictionary *orgDic = self.organizations[indexPath.row];
-    NSString *name = [orgDic valueForKeyPath:@"name"];
-    NSString *identifier = [orgDic valueForKeyPath:@"identifiers.identifier"];
-    NSString *detail = [orgDic valueForKeyPath:@"contact_details.value"];
     
-    
-    NSLog(@"identifier :%@",identifier);
-    cell.textLabel.text = name;
-    cell.detailTextLabel.text = detail;
-    
-    return cell;
+    /* 開始搜尋 */
+    [[[G0VAddressbookClient sharedClient] fetchOrganizationsWithMatchesString:searchText] continueWithBlock:^id(BFTask *task) {
+        
+        /* 錯誤檢查 */
+        
+//        NSLog(@"task.result:%@",task.result);
+        
+        if(!task.result){
+            
+        }
+        
+        /* 記錄結果 */
+        
+        self.organizations = task.result;
+        
+        /* 換到下一頁 */
+        
+        [self performSegueWithIdentifier:PushToSearchResultIdentifier sender:nil];
+        
+        return nil;
+    }];
 }
 
-#pragma mark - Table View DataDelegate
+- (IBAction)TextFieldDidEndOnExit:(id)sender {
+}
 
 @end
