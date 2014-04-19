@@ -26,6 +26,7 @@
 		E73B8A3818FFD9440038C01B /* G0VAddressbookClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E73B8A3718FFD9440038C01B /* G0VAddressbookClient.m */; };
 		E901C29019023D4800804380 /* SearchListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E901C28F19023D4800804380 /* SearchListViewController.m */; };
 		E901C293190242FB00804380 /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E901C292190242FB00804380 /* SearchResultViewController.m */; };
+		E9F1D26D19025EB000DF2096 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F1D26C19025EB000DF2096 /* DetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,8 @@
 		E901C28F19023D4800804380 /* SearchListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchListViewController.m; sourceTree = "<group>"; };
 		E901C291190242FB00804380 /* SearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultViewController.h; sourceTree = "<group>"; };
 		E901C292190242FB00804380 /* SearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultViewController.m; sourceTree = "<group>"; };
+		E9F1D26B19025EB000DF2096 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		E9F1D26C19025EB000DF2096 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +188,8 @@
 				E901C28F19023D4800804380 /* SearchListViewController.m */,
 				E901C291190242FB00804380 /* SearchResultViewController.h */,
 				E901C292190242FB00804380 /* SearchResultViewController.m */,
+				E9F1D26B19025EB000DF2096 /* DetailViewController.h */,
+				E9F1D26C19025EB000DF2096 /* DetailViewController.m */,
 			);
 			name = VCs;
 			sourceTree = "<group>";
@@ -359,6 +364,7 @@
 				E901C293190242FB00804380 /* SearchResultViewController.m in Sources */,
 				E73B8A3818FFD9440038C01B /* G0VAddressbookClient.m in Sources */,
 				E71D2AD618FFC11F00D8C1EE /* main.m in Sources */,
+				E9F1D26D19025EB000DF2096 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

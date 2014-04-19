@@ -12,9 +12,13 @@
 static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
 
 @interface SearchListViewController () <UITextFieldDelegate>
+
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
+
 @property (weak, nonatomic) IBOutlet UIImageView *govImageView;
+
 @property (weak, nonatomic) IBOutlet UIImageView *personImageView;
+
 @property (nonatomic, strong) NSArray *organizations;
 
 @end
@@ -65,7 +69,7 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
         
         /* 錯誤檢查 */
         
-        NSLog(@"task.result:%@",task.result);
+//        NSLog(@"task.result:%@",task.result);
         
         if(!task.result){
             

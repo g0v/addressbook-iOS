@@ -7,12 +7,16 @@
 //
 
 #import "SearchResultViewController.h"
+#import "DetailViewController.h"
 
 static NSString *govCellReuseIdentifier = @"govCellReuseIdentifier";
 
+static NSString *PushToDetailResultIdentifier = @"PushToDetailResultIdentifier";
+
+
 @interface SearchResultViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (nonatomic, strong) NSDictionary *organization;
 @end
 
 @implementation SearchResultViewController
@@ -64,5 +68,25 @@ static NSString *govCellReuseIdentifier = @"govCellReuseIdentifier";
 }
 
 #pragma mark - Table View DataDelegate
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    self.organization = self.organizations[indexPath.row];
+    
+    [self performSegueWithIdentifier:PushToDetailResultIdentifier sender:nil];
+}
+
+#pragma - 
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if ([segue.identifier isEqualToString:PushToDetailResultIdentifier]) {
+        
+        DetailViewController *dtVC = segue.destinationViewController;
+        
+        dtVC.organization = self.organization;
+        
+    }
+}
 
 @end
