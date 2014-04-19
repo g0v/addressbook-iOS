@@ -10,14 +10,14 @@
 
 
 
-@interface DetailViewController ()
+@interface DetailViewController () <UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableViewCell *profileImageCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *telephoneCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *addressCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *emailCell;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *partyImageView;
-
+@property (strong, nonatomic) NSString *phone;
 @end
 
 @implementation DetailViewController
@@ -35,16 +35,16 @@
 {
     [super viewDidLoad];
     
+    self.nameLabel.text = [self.organization valueForKeyPath:@"name"];
+    
     /* 找尋電話 */
     NSArray *contactDetails = [self.organization valueForKeyPath:@"contact_details"];
-    
-    NSString *phone;
     
     for(NSDictionary *contact in contactDetails){
         
         if ([[contact valueForKey:@"type"] isEqualToString:@"voice"]) {
         
-            phone = [contact valueForKey:@"value"];
+            self.phone = [contact valueForKey:@"value"];
         
             break;
             
@@ -52,11 +52,11 @@
         
     }
     
-    if (!phone || phone.length==0) {
+    if (!self.phone || self.phone.length==0) {
         
     }
     
-    self.telephoneCell.detailTextLabel.text = phone;
+    self.telephoneCell.detailTextLabel.text = self.phone;
     
     
     
@@ -77,9 +77,28 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"確定撥出嗎？" message:self.phone delegate:self cancelButtonTitle:@"饒他一馬" otherButtonTitles:@"怕落去啦", nil];
+    
+    [alertView show];
 }
 
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    switch (buttonIndex) {
+        case 0:
+            break;
+            
+        case 1:
+        {
+            NSString *dailText = [NSString stringWithFormat:@"tel:%@",self.phone];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:dailText]];
+            NSLog(@"dailText: %@",dailText);
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
 
 
 @end
