@@ -107,7 +107,6 @@ static NSString *kLength = @"l";
 
             if (paging.haveMorePage) {
                 NSNumber *newOffset = [NSNumber numberWithLongLong:paging.offset + paging.pageLength];
-                NSLog(@"newOffset: %@ last entries: %d entries: %d", newOffset, lastEntries.count, entries.count);
                 NSArray *newEntries = [lastEntries arrayByAddingObjectsFromArray:entries];
 
                 [[self _taskWithPath:inPath
