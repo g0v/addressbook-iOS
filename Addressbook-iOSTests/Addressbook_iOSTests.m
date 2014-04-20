@@ -31,6 +31,8 @@
     XCTAssertNotNil(task.result, @"There should had result.");
 
     NSArray *popoloOrgs = task.result;
+    NSLog(@"result.count: %lu", popoloOrgs.count);
+
     for (NSDictionary *onePopolo in popoloOrgs) {
 
         NSString *identifierOfOnePopolo = [onePopolo valueForKeyPath:@"id"];
@@ -38,12 +40,9 @@
 
         NSString *name = [onePopolo valueForKeyPath:@"name"];
         XCTAssertNotNil(name, @"This should had name.");
+        NSLog(@"name:%@", name);
 
-        // got identifiers
-        NSLog(@"identifiers: %@", [onePopolo valueForKeyPath:@"identifiers.identifier"]);
-
-        // got contact_details
-        NSLog(@"contact details: %@", [onePopolo valueForKeyPath:@"contact_details.value"]);
+        XCTAssertNotNil([onePopolo valueForKeyPath:@"id"], @"This should had id.");
     }
 }
 
