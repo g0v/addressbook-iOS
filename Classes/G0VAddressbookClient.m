@@ -14,35 +14,6 @@ static NSString *kCount = @"count";
 static NSString *kOffset = @"sk";
 static NSString *kLength = @"l";
 
-@interface NSDictionary (Paging)
-- (BOOL)haveMorePage;
-@end
-
-@implementation NSDictionary (Paging)
-
-- (long)count
-{
-    return [[self valueForKeyPath:kCount] longValue];
-}
-
-- (long)pageLength
-{
-    return 2000;
-    return [[self valueForKeyPath:kLength] longValue];
-}
-
-- (long)offset
-{
-    return [[self valueForKeyPath:kOffset] longValue];
-}
-
-- (BOOL)haveMorePage
-{
-    return self.offset + self.pageLength < self.count;
-}
-
-@end
-
 #pragma mark -
 
 @interface G0VABTaskCompletionSource : BFTaskCompletionSource
@@ -96,32 +67,32 @@ static NSString *kLength = @"l";
     return self;
 }
 
-- (BFTask *)_taskWithPath:(NSString *)inPath parameters:(NSDictionary *)parameters lastEntries:(NSArray *)lastEntries
+- (BFTask *)_taskWithPath:(NSString *)inPath parameters:(NSDictionary *)parameters
 {
 	G0VABTaskCompletionSource *source = [G0VABTaskCompletionSource taskCompletionSource];
 	source.connectionTask = [self GET:inPath parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
 		if (responseObject) {
-            NSDictionary *paging = [responseObject objectForKey:kPaging];
-
             NSArray *entries = [responseObject objectForKey:kEntries];
-
-            if (paging.haveMorePage) {
-                NSNumber *newOffset = [NSNumber numberWithLongLong:paging.offset + paging.pageLength];
-                NSArray *newEntries = [lastEntries arrayByAddingObjectsFromArray:entries];
-
-                [[self _taskWithPath:inPath
-                          parameters:@{ kOffset : newOffset, kLength : @(paging.pageLength) }
-                         lastEntries:newEntries] continueWithBlock:^id(BFTask *task) {
-                    return nil;
-                }];
-            } else {
-                [source setResult:entries];
-            }
+            [source setResult:entries];
 		}
 	} failure:^(NSURLSessionDataTask *task, NSError *error) {
 		[source setError:error];
 	}];
 	return source.task;
+}
+
+- (NSDictionary *)_paramentersWithMatchesName:(NSString *)matchesName startAtOffset:(long)offset pageLength:(long)pageLength
+{
+    NSString *quretyStringWithMatchingString = [NSString stringWithFormat:@"{\"name\":{\"$matches\":\"%@\"}}", matchesName];
+    NSMutableDictionary *paramenters = [NSMutableDictionary dictionaryWithDictionary:@{@"q":quretyStringWithMatchingString}];
+
+    if (offset >= 0) {
+        [paramenters setValue:@(offset) forKey:kOffset];
+    }
+    if (pageLength > 0) {
+        [paramenters setValue:@(pageLength) forKey:kLength];
+    }
+    return paramenters;
 }
 
 @end
@@ -132,13 +103,18 @@ static NSString *kLength = @"l";
 
 - (BFTask *)fetchOrganizations
 {
-    return [self _taskWithPath:@"organizations" parameters:nil lastEntries:nil];
+    return [self _taskWithPath:@"organizations" parameters:nil];
 }
 
 - (BFTask *)fetchOrganizationsWithMatchesString:(NSString *)matchesString
 {
-    NSString *quretyStringWithMatchingString = [NSString stringWithFormat:@"{\"name\":{\"$matches\":\"%@\"}}", matchesString];
-    return [self _taskWithPath:@"organizations" parameters:@{@"q":quretyStringWithMatchingString} lastEntries:nil];
+    return [self fetchOrganizationsWithMatchesString:matchesString startAtOffset:0 pageLength:0];
+}
+
+- (BFTask *)fetchOrganizationsWithMatchesString:(NSString *)matchesString startAtOffset:(long)offset pageLength:(long)pageLength
+{
+    NSDictionary *paramenters = [self _paramentersWithMatchesName:matchesString startAtOffset:offset pageLength:pageLength];
+    return [self _taskWithPath:@"organizations" parameters:paramenters];
 }
 
 @end
@@ -149,13 +125,18 @@ static NSString *kLength = @"l";
 
 - (BFTask *)fetchPersons
 {
-    return [self _taskWithPath:@"person" parameters:nil lastEntries:nil];
+    return [self _taskWithPath:@"person" parameters:nil];
 }
 
-- (BFTask *)fetchPersonsWithMatchingString:(NSString *)matchesString
+- (BFTask *)fetchPersonsWithMatchesString:(NSString *)matchesString
 {
-    NSString *quretyStringWithMatchingString = [NSString stringWithFormat:@"{\"name\":{\"$matches\":\"%@\"}}", matchesString];
-    return [self _taskWithPath:@"person" parameters:@{@"q":quretyStringWithMatchingString} lastEntries:nil];
+    return [self fetchOrganizationsWithMatchesString:matchesString startAtOffset:0 pageLength:0];
+}
+
+- (BFTask *)fetchPersonsWithMatchesString:(NSString *)matchesString startAtOffset:(long)offset pageLength:(long)pageLength
+{
+    NSDictionary *paramenters = [self _paramentersWithMatchesName:matchesString startAtOffset:offset pageLength:pageLength];
+    return [self _taskWithPath:@"person" parameters:paramenters];
 }
 
 @end

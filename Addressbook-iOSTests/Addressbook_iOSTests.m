@@ -87,7 +87,7 @@
     NSString *matchesString = @"張";
     __block BOOL looping = YES;
 
-    [[[G0VAddressbookClient sharedClient] fetchPersonsWithMatchingString:matchesString] continueWithBlock:^id(BFTask *task) {
+    [[[G0VAddressbookClient sharedClient] fetchPersonsWithMatchesString:matchesString] continueWithBlock:^id(BFTask *task) {
         looping = NO;
         [self checkResultWithTask:task];
         return nil;
@@ -109,7 +109,7 @@
             // append to |results|
             [results addObjectsFromArray:task.result];
 
-            return [[G0VAddressbookClient sharedClient] fetchPersonsWithMatchingString:matchesString];
+            return [[G0VAddressbookClient sharedClient] fetchPersonsWithMatchesString:matchesString];
         }
 
         // no |task.result| should had error

@@ -20,12 +20,16 @@
 
 - (BFTask *)fetchOrganizationsWithMatchesString:(NSString *)matchesString;
 
+- (BFTask *)fetchOrganizationsWithMatchesString:(NSString *)matchesString startAtOffset:(long)offset pageLength:(long)pageLength;
+
 @end
 
 @interface G0VAddressbookClient (Person)
 
 - (BFTask *)fetchPersons;
 
-- (BFTask *)fetchPersonsWithMatchingString:(NSString *)matchesString;
+- (BFTask *)fetchPersonsWithMatchesString:(NSString *)matchesString;
+
+- (BFTask *)fetchPersonsWithMatchesString:(NSString *)matchesString startAtOffset:(long)offset pageLength:(long)pageLength;
 
 @end
