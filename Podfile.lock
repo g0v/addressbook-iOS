@@ -19,13 +19,16 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - Bolts (1.0.0)
+  - JSONModel (0.13.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.2.2)
   - Bolts (~> 1.0.0)
+  - JSONModel (~> 0.13.0)
 
 SPEC CHECKSUMS:
   AFNetworking: dd8c1868e57451e3d17ebd3516f2a8c16f9646fe
   Bolts: 45bceb8be6243d242caf74308563bba02c2af2a3
+  JSONModel: 1ce27c7d59de0ada0048e64f20006ce02e9ce73d
 
 COCOAPODS: 0.32.1

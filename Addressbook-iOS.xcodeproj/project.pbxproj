@@ -25,6 +25,10 @@
 		E71D2AF618FFC11F00D8C1EE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E71D2AF418FFC11F00D8C1EE /* InfoPlist.strings */; };
 		E71D2AF818FFC11F00D8C1EE /* Addressbook_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E71D2AF718FFC11F00D8C1EE /* Addressbook_iOSTests.m */; };
 		E73B8A3818FFD9440038C01B /* G0VAddressbookClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E73B8A3718FFD9440038C01B /* G0VAddressbookClient.m */; };
+		E769FD9219057F1000398DDE /* PopoloOrganizationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E769FD9119057F1000398DDE /* PopoloOrganizationModel.m */; };
+		E769FD9619057F3100398DDE /* PopoloPersonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E769FD9519057F3100398DDE /* PopoloPersonModel.m */; };
+		E769FD9919057F6200398DDE /* PopoloContactDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E769FD9819057F6200398DDE /* PopoloContactDetailModel.m */; };
+		E769FD9C19058A5A00398DDE /* PopoloLink.m in Sources */ = {isa = PBXBuildFile; fileRef = E769FD9B19058A5A00398DDE /* PopoloLink.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +66,14 @@
 		E71D2AF718FFC11F00D8C1EE /* Addressbook_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Addressbook_iOSTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E73B8A3618FFD9440038C01B /* G0VAddressbookClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = G0VAddressbookClient.h; path = Classes/G0VAddressbookClient.h; sourceTree = "<group>"; };
 		E73B8A3718FFD9440038C01B /* G0VAddressbookClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = G0VAddressbookClient.m; path = Classes/G0VAddressbookClient.m; sourceTree = "<group>"; };
+		E769FD9019057F1000398DDE /* PopoloOrganizationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopoloOrganizationModel.h; path = Classes/PopoloOrganizationModel.h; sourceTree = "<group>"; };
+		E769FD9119057F1000398DDE /* PopoloOrganizationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PopoloOrganizationModel.m; path = Classes/PopoloOrganizationModel.m; sourceTree = "<group>"; };
+		E769FD9419057F3100398DDE /* PopoloPersonModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopoloPersonModel.h; path = Classes/PopoloPersonModel.h; sourceTree = "<group>"; };
+		E769FD9519057F3100398DDE /* PopoloPersonModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PopoloPersonModel.m; path = Classes/PopoloPersonModel.m; sourceTree = "<group>"; };
+		E769FD9719057F6200398DDE /* PopoloContactDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopoloContactDetailModel.h; path = Classes/PopoloContactDetailModel.h; sourceTree = "<group>"; };
+		E769FD9819057F6200398DDE /* PopoloContactDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PopoloContactDetailModel.m; path = Classes/PopoloContactDetailModel.m; sourceTree = "<group>"; };
+		E769FD9A19058A5A00398DDE /* PopoloLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopoloLink.h; path = Classes/PopoloLink.h; sourceTree = "<group>"; };
+		E769FD9B19058A5A00398DDE /* PopoloLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PopoloLink.m; path = Classes/PopoloLink.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				E744DB3B18FFD3D000D3F7E6 /* G0VAddressbook */,
+				E769FD8F19057ED500398DDE /* PopoloModel */,
 				E71D2ACF18FFC11F00D8C1EE /* Addressbook-iOS */,
 				E71D2AF118FFC11F00D8C1EE /* Addressbook-iOSTests */,
 				E71D2AC818FFC11F00D8C1EE /* Frameworks */,
@@ -174,6 +187,21 @@
 				E73B8A3718FFD9440038C01B /* G0VAddressbookClient.m */,
 			);
 			name = G0VAddressbook;
+			sourceTree = "<group>";
+		};
+		E769FD8F19057ED500398DDE /* PopoloModel */ = {
+			isa = PBXGroup;
+			children = (
+				E769FD9019057F1000398DDE /* PopoloOrganizationModel.h */,
+				E769FD9119057F1000398DDE /* PopoloOrganizationModel.m */,
+				E769FD9419057F3100398DDE /* PopoloPersonModel.h */,
+				E769FD9519057F3100398DDE /* PopoloPersonModel.m */,
+				E769FD9719057F6200398DDE /* PopoloContactDetailModel.h */,
+				E769FD9819057F6200398DDE /* PopoloContactDetailModel.m */,
+				E769FD9A19058A5A00398DDE /* PopoloLink.h */,
+				E769FD9B19058A5A00398DDE /* PopoloLink.m */,
+			);
+			name = PopoloModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,8 +370,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E71D2AE318FFC11F00D8C1EE /* ViewController.m in Sources */,
+				E769FD9919057F6200398DDE /* PopoloContactDetailModel.m in Sources */,
+				E769FD9619057F3100398DDE /* PopoloPersonModel.m in Sources */,
+				E769FD9219057F1000398DDE /* PopoloOrganizationModel.m in Sources */,
 				E71D2ADA18FFC11F00D8C1EE /* AppDelegate.m in Sources */,
 				E73B8A3818FFD9440038C01B /* G0VAddressbookClient.m in Sources */,
+				E769FD9C19058A5A00398DDE /* PopoloLink.m in Sources */,
 				E71D2AD618FFC11F00D8C1EE /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

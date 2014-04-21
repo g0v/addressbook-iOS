@@ -14,6 +14,22 @@ static NSString *kCount = @"count";
 static NSString *kOffset = @"sk";
 static NSString *kLength = @"l";
 
+@implementation PagingModel
+
++ (JSONKeyMapper *)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:
+            @{@"count" : @"resultCount",
+              @"sk" : @"offset",
+              @"l" : @"pageLength"
+              }];
+}
+
+@end
+
+@implementation PgRestResult
+@end
+
 #pragma mark -
 
 @interface G0VABTaskCompletionSource : BFTaskCompletionSource
@@ -52,7 +68,7 @@ static NSString *kLength = @"l";
     static dispatch_once_t onceToken;
     static G0VAddressbookClient *shareClient;
     dispatch_once(&onceToken, ^{
-        shareClient = [[G0VAddressbookClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://pgrest.io/hychen/api.addressbook/v0/collections/"]];
+        shareClient = [[G0VAddressbookClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://127.0.0.1:3000/collections/"]];
     });
     return shareClient;
 }
@@ -72,8 +88,13 @@ static NSString *kLength = @"l";
 	G0VABTaskCompletionSource *source = [G0VABTaskCompletionSource taskCompletionSource];
 	source.connectionTask = [self GET:inPath parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
 		if (responseObject) {
-            NSArray *entries = [responseObject objectForKey:kEntries];
-            [source setResult:entries];
+            NSError *jsonError = nil;
+            PgRestResult *result = [[PgRestResult alloc] initWithDictionary:responseObject error:&jsonError];
+            if (jsonError) {
+                [source setError:jsonError];
+            } else {
+                [source setResult:result];
+            }
 		}
 	} failure:^(NSURLSessionDataTask *task, NSError *error) {
 		[source setError:error];

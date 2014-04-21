@@ -30,17 +30,6 @@
     NSArray *popoloOrgs = result;
     NSLog(@"result.count: %lu", popoloOrgs.count);
 
-    for (NSDictionary *onePopolo in popoloOrgs) {
-
-        NSString *identifierOfOnePopolo = [onePopolo valueForKeyPath:@"id"];
-        XCTAssertNotNil(identifierOfOnePopolo, @"This must had value.");
-
-        NSString *name = [onePopolo valueForKeyPath:@"name"];
-        XCTAssertNotNil(name, @"This should had name.");
-        NSLog(@"name:%@", name);
-
-        XCTAssertNotNil([onePopolo valueForKeyPath:@"id"], @"This should had id.");
-    }
 }
 
 - (void)checkResultWithTask:(BFTask *)task
@@ -48,7 +37,8 @@
     XCTAssertNil(task.error, @"There should not be any error.");
     XCTAssertNotNil(task.result, @"There should had result.");
 
-    [self checkResult:task.result];
+    PgRestResult *result = task.result;
+    [self checkResult:result.entries];
 }
 
 - (void)testOrgs
@@ -106,8 +96,9 @@
 
     [[[[G0VAddressbookClient sharedClient] fetchOrganizationsWithMatchesString:matchesString] continueWithBlock:^id(BFTask *task) {
         if (task.result) {
+            PgRestResult *result = task.result;
             // append to |results|
-            [results addObjectsFromArray:task.result];
+            [results addObjectsFromArray:result.entries];
 
             return [[G0VAddressbookClient sharedClient] fetchPersonsWithMatchesString:matchesString];
         }
@@ -119,8 +110,9 @@
         looping = NO;
 
         if (task.result) {
+            PgRestResult *result = task.result;
             // append to |results|
-            [results addObjectsFromArray:task.result];
+            [results addObjectsFromArray:result.entries];
 
             [self checkResult:results];
             return nil;

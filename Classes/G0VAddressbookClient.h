@@ -7,6 +7,23 @@
 
 #import "AFNetworking.h"
 #import "Bolts.h"
+// model
+#import "PopoloOrganizationModel.h"
+#import "PopoloPersonModel.h"
+
+@interface PagingModel : JSONModel
+@property (assign, nonatomic) NSUInteger resultCount;
+@property (assign, nonatomic) NSUInteger offset;
+@property (assign, nonatomic) NSUInteger pageLength;
+@end
+
+@interface PgRestResult : JSONModel
+@property (strong, nonatomic) PagingModel *paging;
+@property (strong, nonatomic) NSArray<PopoloOrganizationModel, PopoloPersonModel> *entries;
+@property (strong, nonatomic) NSString<Optional> *query;
+@end
+
+#pragma mark -
 
 @interface G0VAddressbookClient : AFHTTPSessionManager
 
