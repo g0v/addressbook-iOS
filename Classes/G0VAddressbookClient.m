@@ -81,14 +81,14 @@ static NSString *kLength = @"l";
     static dispatch_once_t onceToken;
     static G0VAddressbookClient *shareClient;
     dispatch_once(&onceToken, ^{
-        shareClient = [[G0VAddressbookClient alloc] init];
+        shareClient = [[G0VAddressbookClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://pgrest.io/hychen/api.addressbook/v0/collections/"]];
     });
     return shareClient;
 }
 
-- (instancetype)init
+- (instancetype)initWithBaseURL:(NSURL *)url
 {
-    self = [super initWithBaseURL:[NSURL URLWithString:@"http://pgrest.io/hychen/api.addressbook/v0/collections/"]];
+    self = [super initWithBaseURL:url];
     if (self) {
         self.requestSerializer = [AFHTTPRequestSerializer serializer];
 		self.responseSerializer = [AFJSONResponseSerializer serializer];
