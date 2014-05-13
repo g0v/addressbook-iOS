@@ -72,7 +72,7 @@
 
  The organization that contains this organization
  */
-@property (nonatomic, strong) NSString *parent;
+@property (nonatomic, strong) NSString<Optional> *parent;
 
 /**
  founding_date
