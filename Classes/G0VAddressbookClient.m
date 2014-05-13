@@ -122,11 +122,6 @@ static NSString *kLength = @"l";
 
 @implementation G0VAddressbookClient (Organization)
 
-- (BFTask *)fetchOrganizations
-{
-    return [self _taskWithPath:@"organizations" parameters:nil];
-}
-
 - (BFTask *)fetchOrganizationsWithMatchesString:(NSString *)matchesString
 {
     return [self fetchOrganizationsWithMatchesString:matchesString startAtOffset:0 pageLength:0];
@@ -143,11 +138,6 @@ static NSString *kLength = @"l";
 #pragma mark - Person
 
 @implementation G0VAddressbookClient (Person)
-
-- (BFTask *)fetchPersons
-{
-    return [self _taskWithPath:@"person" parameters:nil];
-}
 
 - (BFTask *)fetchPersonsWithMatchesString:(NSString *)matchesString
 {
