@@ -27,7 +27,10 @@ static NSString *kLength = @"l";
 
 @end
 
-@implementation PgRestResult
+@implementation PgRestOrganizationResult
+@end
+
+@implementation PgRestPersonResult
 @end
 
 #pragma mark -
@@ -68,7 +71,7 @@ static NSString *kLength = @"l";
     static dispatch_once_t onceToken;
     static G0VAddressbookClient *shareClient;
     dispatch_once(&onceToken, ^{
-        shareClient = [[G0VAddressbookClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://127.0.0.1:3000/collections/"]];
+        shareClient = [[G0VAddressbookClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://pgrest.io/hychen/api.addressbook/v0/collections/"]];
     });
     return shareClient;
 }
@@ -83,13 +86,13 @@ static NSString *kLength = @"l";
     return self;
 }
 
-- (BFTask *)_taskWithPath:(NSString *)inPath parameters:(NSDictionary *)parameters
+- (BFTask *)_taskWithPath:(NSString *)inPath classOfDataModel:(Class)classOfDataModel parameters:(NSDictionary *)parameters
 {
 	G0VABTaskCompletionSource *source = [G0VABTaskCompletionSource taskCompletionSource];
 	source.connectionTask = [self GET:inPath parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
 		if (responseObject) {
             NSError *jsonError = nil;
-            PgRestResult *result = [[PgRestResult alloc] initWithDictionary:responseObject error:&jsonError];
+            JSONModel *result = [[classOfDataModel alloc] initWithDictionary:responseObject error:&jsonError];
             if (jsonError) {
                 [source setError:jsonError];
             } else {
@@ -130,7 +133,7 @@ static NSString *kLength = @"l";
 - (BFTask *)fetchOrganizationsWithMatchesString:(NSString *)matchesString startAtOffset:(long)offset pageLength:(long)pageLength
 {
     NSDictionary *paramenters = [self _paramentersWithMatchesName:matchesString startAtOffset:offset pageLength:pageLength];
-    return [self _taskWithPath:@"organizations" parameters:paramenters];
+    return [self _taskWithPath:@"organizations" classOfDataModel:[PgRestOrganizationResult class] parameters:paramenters];
 }
 
 @end
@@ -147,7 +150,7 @@ static NSString *kLength = @"l";
 - (BFTask *)fetchPersonsWithMatchesString:(NSString *)matchesString startAtOffset:(long)offset pageLength:(long)pageLength
 {
     NSDictionary *paramenters = [self _paramentersWithMatchesName:matchesString startAtOffset:offset pageLength:pageLength];
-    return [self _taskWithPath:@"person" parameters:paramenters];
+    return [self _taskWithPath:@"person" classOfDataModel:[PgRestPersonResult class]  parameters:paramenters];
 }
 
 @end

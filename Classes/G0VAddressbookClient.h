@@ -17,9 +17,15 @@
 @property (assign, nonatomic) NSUInteger pageLength;
 @end
 
-@interface PgRestResult : JSONModel
+@interface PgRestPersonResult : JSONModel
 @property (strong, nonatomic) PagingModel *paging;
-@property (strong, nonatomic) NSArray<PopoloOrganization, PopoloPerson> *entries;
+@property (strong, nonatomic) NSArray<PopoloPerson> *entries;
+@property (strong, nonatomic) NSString<Optional> *query;
+@end
+
+@interface PgRestOrganizationResult : JSONModel
+@property (strong, nonatomic) PagingModel *paging;
+@property (strong, nonatomic) NSArray<PopoloOrganization> *entries;
 @property (strong, nonatomic) NSString<Optional> *query;
 @end
 

@@ -27,9 +27,21 @@
 
 - (void)checkResult:(id)result
 {
-    NSArray *popoloOrgs = result;
-    NSLog(@"result.count: %lu", popoloOrgs.count);
+    if ([result isKindOfClass:[PgRestOrganizationResult class]]) {
+        for (PopoloOrganization *org in ((PgRestOrganizationResult *)result).entries) {
+            NSLog(@"org name:%@", org.name);
+            XCTAssertNotNil(org.name, @"This should had name.");
+            XCTAssertNotNil(org.id, @"This must had value.");
+        }
+    }
 
+    if ([result isKindOfClass:[PgRestPersonResult class]]) {
+        for (PopoloPerson *person in ((PgRestPersonResult *)result).entries) {
+            NSLog(@"person name:%@", person.name);
+            XCTAssertNotNil(person.name, @"This should had name.");
+            XCTAssertNotNil(person.id, @"This must had value.");
+        }
+    }
 }
 
 - (void)checkResultWithTask:(BFTask *)task
@@ -37,23 +49,7 @@
     XCTAssertNil(task.error, @"There should not be any error.");
     XCTAssertNotNil(task.result, @"There should had result.");
 
-    PgRestResult *result = task.result;
-    [self checkResult:result.entries];
-}
-
-- (void)testOrgs
-{
-    __block BOOL looping = YES;
-
-    [[[G0VAddressbookClient sharedClient] fetchOrganizations] continueWithBlock:^id(BFTask *task) {
-        looping = NO;
-        [self checkResultWithTask:task];
-        return nil;
-    }];
-
-    while (looping) {
-		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.2]];
-	}
+    [self checkResult:task.result];
 }
 
 - (void)testOrgsWithMatchesString
@@ -96,7 +92,7 @@
 
     [[[[G0VAddressbookClient sharedClient] fetchOrganizationsWithMatchesString:matchesString] continueWithBlock:^id(BFTask *task) {
         if (task.result) {
-            PgRestResult *result = task.result;
+            PgRestOrganizationResult *result = task.result;
             // append to |results|
             [results addObjectsFromArray:result.entries];
 
@@ -110,7 +106,7 @@
         looping = NO;
 
         if (task.result) {
-            PgRestResult *result = task.result;
+            PgRestPersonResult *result = task.result;
             // append to |results|
             [results addObjectsFromArray:result.entries];
 
@@ -125,6 +121,7 @@
 
     while (looping) {
 		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.2]];
+        NSLog(@"I am in loop 0.2s");
 	}
 }
 
