@@ -8,8 +8,8 @@
 #import "AFNetworking.h"
 #import "Bolts.h"
 // model
-#import "PopoloOrganizationModel.h"
-#import "PopoloPersonModel.h"
+#import "PopoloOrganization.h"
+#import "PopoloPerson.h"
 
 @interface PagingModel : JSONModel
 @property (assign, nonatomic) NSUInteger resultCount;
@@ -19,7 +19,7 @@
 
 @interface PgRestResult : JSONModel
 @property (strong, nonatomic) PagingModel *paging;
-@property (strong, nonatomic) NSArray<PopoloOrganizationModel, PopoloPersonModel> *entries;
+@property (strong, nonatomic) NSArray<PopoloOrganization, PopoloPerson> *entries;
 @property (strong, nonatomic) NSString<Optional> *query;
 @end
 

@@ -2,7 +2,7 @@
 //  PopoloLink.h
 //
 //  Created by Superbil on 2014/4/22.
-//  Copyright (c) 2014年 g0v. All rights reserved.
+//
 //
 
 #import "JSONModel.h"
@@ -15,16 +15,21 @@
 
  A URL
 
- JSON Schema: http://json-schema.org/draft-03/schema
+ JSON Schema: http://popoloproject.com/schemas/link.json#
  */
 
 @interface PopoloLink : JSONModel
 
 /**
+ url
+
  A URL
  */
-@property (nonatomic, strong) NSString *url;
+@property (nonatomic, copy) NSString *url;
+
 /**
+ note
+
  A note, e.g. 'Wikipedia page'
  */
 @property (nonatomic, strong) NSString<Optional> *note;
