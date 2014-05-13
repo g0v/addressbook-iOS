@@ -141,7 +141,7 @@ static NSString *kLength = @"l";
 
 - (BFTask *)fetchPersonsWithMatchesString:(NSString *)matchesString
 {
-    return [self fetchOrganizationsWithMatchesString:matchesString startAtOffset:0 pageLength:0];
+    return [self fetchPersonsWithMatchesString:matchesString startAtOffset:0 pageLength:0];
 }
 
 - (BFTask *)fetchPersonsWithMatchesString:(NSString *)matchesString startAtOffset:(long)offset pageLength:(long)pageLength
