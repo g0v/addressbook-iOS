@@ -14,33 +14,23 @@ static NSString *kCount = @"count";
 static NSString *kOffset = @"sk";
 static NSString *kLength = @"l";
 
-@interface NSDictionary (Paging)
-- (BOOL)haveMorePage;
+@implementation PagingModel
+
++ (JSONKeyMapper *)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:
+            @{@"count" : @"resultCount",
+              @"sk" : @"offset",
+              @"l" : @"pageLength"
+              }];
+}
+
 @end
 
-@implementation NSDictionary (Paging)
+@implementation PgRestOrganizationResult
+@end
 
-- (long)count
-{
-    return [[self valueForKeyPath:kCount] longValue];
-}
-
-- (long)pageLength
-{
-    return 2000;
-    return [[self valueForKeyPath:kLength] longValue];
-}
-
-- (long)offset
-{
-    return [[self valueForKeyPath:kOffset] longValue];
-}
-
-- (BOOL)haveMorePage
-{
-    return self.offset + self.pageLength < self.count;
-}
-
+@implementation PgRestPersonResult
 @end
 
 #pragma mark -
@@ -81,14 +71,14 @@ static NSString *kLength = @"l";
     static dispatch_once_t onceToken;
     static G0VAddressbookClient *shareClient;
     dispatch_once(&onceToken, ^{
-        shareClient = [[G0VAddressbookClient alloc] init];
+        shareClient = [[G0VAddressbookClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://pgrest.io/hychen/api.addressbook/v0/collections/"]];
     });
     return shareClient;
 }
 
-- (instancetype)init
+- (instancetype)initWithBaseURL:(NSURL *)url
 {
-    self = [super initWithBaseURL:[NSURL URLWithString:@"http://pgrest.io/hychen/api.addressbook/v0/collections/"]];
+    self = [super initWithBaseURL:url];
     if (self) {
         self.requestSerializer = [AFHTTPRequestSerializer serializer];
 		self.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -96,27 +86,17 @@ static NSString *kLength = @"l";
     return self;
 }
 
-- (BFTask *)_taskWithPath:(NSString *)inPath parameters:(NSDictionary *)parameters lastEntries:(NSArray *)lastEntries
+- (BFTask *)_taskWithPath:(NSString *)inPath classOfDataModel:(Class)classOfDataModel parameters:(NSDictionary *)parameters
 {
 	G0VABTaskCompletionSource *source = [G0VABTaskCompletionSource taskCompletionSource];
 	source.connectionTask = [self GET:inPath parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
 		if (responseObject) {
-            NSDictionary *paging = [responseObject objectForKey:kPaging];
-
-            NSArray *entries = [responseObject objectForKey:kEntries];
-
-            if (paging.haveMorePage) {
-                NSNumber *newOffset = [NSNumber numberWithLongLong:paging.offset + paging.pageLength];
-                NSLog(@"newOffset: %@ last entries: %d entries: %d", newOffset, lastEntries.count, entries.count);
-                NSArray *newEntries = [lastEntries arrayByAddingObjectsFromArray:entries];
-
-                [[self _taskWithPath:inPath
-                          parameters:@{ kOffset : newOffset, kLength : @(paging.pageLength) }
-                         lastEntries:newEntries] continueWithBlock:^id(BFTask *task) {
-                    return nil;
-                }];
+            NSError *jsonError = nil;
+            JSONModel *result = [[classOfDataModel alloc] initWithDictionary:responseObject error:&jsonError];
+            if (jsonError) {
+                [source setError:jsonError];
             } else {
-                [source setResult:entries];
+                [source setResult:result];
             }
 		}
 	} failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -125,21 +105,52 @@ static NSString *kLength = @"l";
 	return source.task;
 }
 
+- (NSDictionary *)_paramentersWithMatchesName:(NSString *)matchesName startAtOffset:(long)offset pageLength:(long)pageLength
+{
+    NSString *quretyStringWithMatchingString = [NSString stringWithFormat:@"{\"name\":{\"$matches\":\"%@\"}}", matchesName];
+    NSMutableDictionary *paramenters = [NSMutableDictionary dictionaryWithDictionary:@{@"q":quretyStringWithMatchingString}];
+
+    if (offset >= 0) {
+        [paramenters setValue:@(offset) forKey:kOffset];
+    }
+    if (pageLength > 0) {
+        [paramenters setValue:@(pageLength) forKey:kLength];
+    }
+    return paramenters;
+}
+
 @end
 
 #pragma mark - Organization
 
 @implementation G0VAddressbookClient (Organization)
 
-- (BFTask *)fetchOrganizations
-{
-    return [self _taskWithPath:@"organizations" parameters:nil lastEntries:nil];
-}
-
 - (BFTask *)fetchOrganizationsWithMatchesString:(NSString *)matchesString
 {
-    NSString *quretyStringWithMatchingString = [NSString stringWithFormat:@"{\"name\":{\"$matches\":\"%@\"}}", matchesString];
-    return [self _taskWithPath:@"organizations" parameters:@{@"q":quretyStringWithMatchingString} lastEntries:nil];
+    return [self fetchOrganizationsWithMatchesString:matchesString startAtOffset:0 pageLength:0];
+}
+
+- (BFTask *)fetchOrganizationsWithMatchesString:(NSString *)matchesString startAtOffset:(long)offset pageLength:(long)pageLength
+{
+    NSDictionary *paramenters = [self _paramentersWithMatchesName:matchesString startAtOffset:offset pageLength:pageLength];
+    return [self _taskWithPath:@"organizations" classOfDataModel:[PgRestOrganizationResult class] parameters:paramenters];
+}
+
+@end
+
+#pragma mark - Person
+
+@implementation G0VAddressbookClient (Person)
+
+- (BFTask *)fetchPersonsWithMatchesString:(NSString *)matchesString
+{
+    return [self fetchPersonsWithMatchesString:matchesString startAtOffset:0 pageLength:0];
+}
+
+- (BFTask *)fetchPersonsWithMatchesString:(NSString *)matchesString startAtOffset:(long)offset pageLength:(long)pageLength
+{
+    NSDictionary *paramenters = [self _paramentersWithMatchesName:matchesString startAtOffset:offset pageLength:pageLength];
+    return [self _taskWithPath:@"person" classOfDataModel:[PgRestPersonResult class]  parameters:paramenters];
 }
 
 @end

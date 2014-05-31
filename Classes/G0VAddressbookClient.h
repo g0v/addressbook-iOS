@@ -7,6 +7,29 @@
 
 #import "AFNetworking.h"
 #import "Bolts.h"
+// model
+#import "PopoloOrganization.h"
+#import "PopoloPerson.h"
+
+@interface PagingModel : JSONModel
+@property (assign, nonatomic) NSUInteger resultCount;
+@property (assign, nonatomic) NSUInteger offset;
+@property (assign, nonatomic) NSUInteger pageLength;
+@end
+
+@interface PgRestPersonResult : JSONModel
+@property (strong, nonatomic) PagingModel *paging;
+@property (strong, nonatomic) NSArray<PopoloPerson> *entries;
+@property (strong, nonatomic) NSString<Optional> *query;
+@end
+
+@interface PgRestOrganizationResult : JSONModel
+@property (strong, nonatomic) PagingModel *paging;
+@property (strong, nonatomic) NSArray<PopoloOrganization> *entries;
+@property (strong, nonatomic) NSString<Optional> *query;
+@end
+
+#pragma mark -
 
 @interface G0VAddressbookClient : AFHTTPSessionManager
 
@@ -16,8 +39,16 @@
 
 @interface G0VAddressbookClient (Organization)
 
-- (BFTask *)fetchOrganizations;
-
 - (BFTask *)fetchOrganizationsWithMatchesString:(NSString *)matchesString;
+
+- (BFTask *)fetchOrganizationsWithMatchesString:(NSString *)matchesString startAtOffset:(long)offset pageLength:(long)pageLength;
+
+@end
+
+@interface G0VAddressbookClient (Person)
+
+- (BFTask *)fetchPersonsWithMatchesString:(NSString *)matchesString;
+
+- (BFTask *)fetchPersonsWithMatchesString:(NSString *)matchesString startAtOffset:(long)offset pageLength:(long)pageLength;
 
 @end
