@@ -275,6 +275,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = g0v;
 				TargetAttributes = {
+					E71D2AC518FFC11F00D8C1EE = {
+						DevelopmentTeam = 67Y6DS58YP;
+					};
 					E71D2AE918FFC11F00D8C1EE = {
 						TestTargetID = E71D2AC518FFC11F00D8C1EE;
 					};
@@ -536,10 +539,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Addressbook-iOS/Addressbook-iOS-Prefix.pch";
 				INFOPLIST_FILE = "Addressbook-iOS/Addressbook-iOS-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -551,10 +558,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Addressbook-iOS/Addressbook-iOS-Prefix.pch";
 				INFOPLIST_FILE = "Addressbook-iOS/Addressbook-iOS-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
