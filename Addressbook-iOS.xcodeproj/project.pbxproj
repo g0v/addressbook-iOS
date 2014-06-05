@@ -24,6 +24,11 @@
 		E71D2AF618FFC11F00D8C1EE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E71D2AF418FFC11F00D8C1EE /* InfoPlist.strings */; };
 		E71D2AF818FFC11F00D8C1EE /* Addressbook_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E71D2AF718FFC11F00D8C1EE /* Addressbook_iOSTests.m */; };
 		E73B8A3818FFD9440038C01B /* G0VAddressbookClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E73B8A3718FFD9440038C01B /* G0VAddressbookClient.m */; };
+		E7514F3819406CC200BE2345 /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = E7514F3319406CC200BE2345 /* title.png */; };
+		E7514F3919406CC200BE2345 /* organization.png in Resources */ = {isa = PBXBuildFile; fileRef = E7514F3419406CC200BE2345 /* organization.png */; };
+		E7514F3A19406CC200BE2345 /* organization_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = E7514F3519406CC200BE2345 /* organization_selected.png */; };
+		E7514F3B19406CC200BE2345 /* person.png in Resources */ = {isa = PBXBuildFile; fileRef = E7514F3619406CC200BE2345 /* person.png */; };
+		E7514F3C19406CC200BE2345 /* person_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = E7514F3719406CC200BE2345 /* person_selected.png */; };
 		E777C5C219227FAF0050AC9B /* PopoloContactDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = E777C5AD19227FAF0050AC9B /* PopoloContactDetail.m */; };
 		E777C5C419227FAF0050AC9B /* PopoloIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = E777C5B119227FAF0050AC9B /* PopoloIdentifier.m */; };
 		E777C5C519227FAF0050AC9B /* PopoloLink.m in Sources */ = {isa = PBXBuildFile; fileRef = E777C5B319227FAF0050AC9B /* PopoloLink.m */; };
@@ -68,6 +73,11 @@
 		E71D2AF718FFC11F00D8C1EE /* Addressbook_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Addressbook_iOSTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E73B8A3618FFD9440038C01B /* G0VAddressbookClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = G0VAddressbookClient.h; path = Classes/G0VAddressbookClient.h; sourceTree = "<group>"; };
 		E73B8A3718FFD9440038C01B /* G0VAddressbookClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = G0VAddressbookClient.m; path = Classes/G0VAddressbookClient.m; sourceTree = "<group>"; };
+		E7514F3319406CC200BE2345 /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = title.png; path = "Addressbook-iOS/Image/title.png"; sourceTree = "<group>"; };
+		E7514F3419406CC200BE2345 /* organization.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = organization.png; path = "Addressbook-iOS/Image/organization.png"; sourceTree = "<group>"; };
+		E7514F3519406CC200BE2345 /* organization_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = organization_selected.png; path = "Addressbook-iOS/Image/organization_selected.png"; sourceTree = "<group>"; };
+		E7514F3619406CC200BE2345 /* person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = person.png; path = "Addressbook-iOS/Image/person.png"; sourceTree = "<group>"; };
+		E7514F3719406CC200BE2345 /* person_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = person_selected.png; path = "Addressbook-iOS/Image/person_selected.png"; sourceTree = "<group>"; };
 		E777C5AC19227FAF0050AC9B /* PopoloContactDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopoloContactDetail.h; path = Classes/PopoloContactDetail.h; sourceTree = "<group>"; };
 		E777C5AD19227FAF0050AC9B /* PopoloContactDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PopoloContactDetail.m; path = Classes/PopoloContactDetail.m; sourceTree = "<group>"; };
 		E777C5B019227FAF0050AC9B /* PopoloIdentifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopoloIdentifier.h; path = Classes/PopoloIdentifier.h; sourceTree = "<group>"; };
@@ -117,12 +127,13 @@
 		E71D2ABD18FFC11F00D8C1EE = {
 			isa = PBXGroup;
 			children = (
-				E744DB3B18FFD3D000D3F7E6 /* G0VAddressbook */,
-				E769FD8F19057ED500398DDE /* PopoloModel */,
 				E71D2ACF18FFC11F00D8C1EE /* Addressbook-iOS */,
 				E71D2AF118FFC11F00D8C1EE /* Addressbook-iOSTests */,
 				E71D2AC818FFC11F00D8C1EE /* Frameworks */,
+				E744DB3B18FFD3D000D3F7E6 /* G0VAddressbook */,
+				E769FD8F19057ED500398DDE /* PopoloModel */,
 				E71D2AC718FFC11F00D8C1EE /* Products */,
+				E7514F3219406C9500BE2345 /* Resources */,
 				DF828E3BF23245A3BCEDF6FF /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
@@ -203,6 +214,18 @@
 				E73B8A3718FFD9440038C01B /* G0VAddressbookClient.m */,
 			);
 			name = G0VAddressbook;
+			sourceTree = "<group>";
+		};
+		E7514F3219406C9500BE2345 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E7514F3419406CC200BE2345 /* organization.png */,
+				E7514F3519406CC200BE2345 /* organization_selected.png */,
+				E7514F3619406CC200BE2345 /* person.png */,
+				E7514F3719406CC200BE2345 /* person_selected.png */,
+				E7514F3319406CC200BE2345 /* title.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		E769FD8F19057ED500398DDE /* PopoloModel */ = {
@@ -308,8 +331,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E71D2AE018FFC11F00D8C1EE /* Main_iPad.storyboard in Resources */,
+				E7514F3919406CC200BE2345 /* organization.png in Resources */,
 				E71D2AE518FFC11F00D8C1EE /* Images.xcassets in Resources */,
+				E7514F3819406CC200BE2345 /* title.png in Resources */,
+				E7514F3B19406CC200BE2345 /* person.png in Resources */,
 				E71D2ADD18FFC11F00D8C1EE /* Main_iPhone.storyboard in Resources */,
+				E7514F3A19406CC200BE2345 /* organization_selected.png in Resources */,
+				E7514F3C19406CC200BE2345 /* person_selected.png in Resources */,
 				E71D2AD418FFC11F00D8C1EE /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
