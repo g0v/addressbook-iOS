@@ -23,18 +23,13 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
 
 @implementation SearchListViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+#ifdef DEBUG
+    self.searchTextField.text = @"張";
+#endif
 }
 
 #pragma -
@@ -79,7 +74,7 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
             self.personResult = personResult;
         }
 
-        /* 換到下一頁 */
+        /* Change to next page */
         [self performSegueWithIdentifier:PushToSearchResultIdentifier sender:nil];
 
         return nil;
