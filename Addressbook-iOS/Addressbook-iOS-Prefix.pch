@@ -15,3 +15,9 @@
     #import <Foundation/Foundation.h>
     #import "G0VAddressbookClient.h"
 #endif
+
+// disable NSLog when it's not debug mode
+#if DEBUG
+#else
+#define NSLog(...) {}
+#endif
