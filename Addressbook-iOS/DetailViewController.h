@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface DetailViewController : UITableViewController
-@property (nonatomic, strong) NSDictionary *organization;
+
+@property (nonatomic, strong) JSONModel *onePopolo;
+
 @end

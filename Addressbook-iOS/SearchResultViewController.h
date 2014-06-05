@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface SearchResultViewController : UIViewController
-@property (nonatomic, strong) NSArray *organizations;
+
+@property (nonatomic, strong) PgRestOrganizationResult *organizations;
+@property (nonatomic, strong) PgRestPersonResult *persons;
+
 @end

@@ -13,13 +13,11 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
 
 @interface SearchListViewController () <UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *searchTextField;
-
-@property (weak, nonatomic) IBOutlet UIImageView *govImageView;
-
-@property (weak, nonatomic) IBOutlet UIImageView *personImageView;
-
-@property (nonatomic, strong) NSArray *organizations;
+@property (nonatomic, weak) IBOutlet UITextField *searchTextField;
+@property (nonatomic, weak) IBOutlet UIImageView *govImageView;
+@property (nonatomic, weak) IBOutlet UIImageView *personImageView;
+@property (nonatomic, strong) PgRestOrganizationResult *organizationResult;
+@property (nonatomic, strong) PgRestPersonResult *personResult;
 
 @end
 
@@ -39,50 +37,51 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
     [super viewDidLoad];
 }
 
-
 #pragma -
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    
-    /* 傳遞搜尋結果 */
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    /* Send search result */
     if ([segue.identifier isEqualToString:PushToSearchResultIdentifier]) {
-        SearchResultViewController *srVC = segue.destinationViewController;
-        srVC.title = self.searchTextField.text;
-        srVC.organizations = self.organizations;
+        SearchResultViewController *searchResultVC = segue.destinationViewController;
+        searchResultVC.title = self.searchTextField.text;
+        searchResultVC.organizations = self.organizationResult;
+        searchResultVC.persons = self.personResult;
     }
 }
 
-- (IBAction)searchTextFieldEditingDidEnd:(id)sender {
-    /* 搜尋 */
-    
-    /* 錯誤檢查 */
+/* Search */
+- (IBAction)searchTextFieldEditingDidEnd:(id)sender
+{
+    /* Check error */
     NSString *searchText = self.searchTextField.text;
-    
-    if(!searchText || searchText.length==0){
+
+    if (!searchText || searchText.length==0) {
         [sender resignFirstResponder];
         return;
     }
-    
-    
-    /* 開始搜尋 */
-    [[[G0VAddressbookClient sharedClient] fetchOrganizationsWithMatchesString:searchText] continueWithBlock:^id(BFTask *task) {
-        
-        /* 錯誤檢查 */
-        
-//        NSLog(@"task.result:%@",task.result);
-        
-        if(!task.result){
-            
+
+    /* Start Serach */
+    [[[[G0VAddressbookClient sharedClient] fetchOrganizationsWithMatchesString:searchText] continueWithBlock:^id(BFTask *task) {
+
+        if(task.result){
+            PgRestOrganizationResult *orgResult = task.result;
+            self.organizationResult = orgResult;
+
+            return [[G0VAddressbookClient sharedClient] fetchPersonsWithMatchesString:searchText];
         }
+
+        return nil;
+    }] continueWithBlock:^id(BFTask *task) {
         
-        /* 記錄結果 */
-        
-        self.organizations = task.result;
-        
+        if (task.result) {
+            PgRestPersonResult *personResult = task.result;
+            self.personResult = personResult;
+        }
+
         /* 換到下一頁 */
-        
         [self performSegueWithIdentifier:PushToSearchResultIdentifier sender:nil];
-        
+
         return nil;
     }];
 }

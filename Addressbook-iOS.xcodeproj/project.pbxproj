@@ -151,17 +151,17 @@
 		E71D2ACF18FFC11F00D8C1EE /* Addressbook-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				E71D2AD818FFC11F00D8C1EE /* AppDelegate.h */,
+				E71D2AD918FFC11F00D8C1EE /* AppDelegate.m */,
 				E7D7A2741939BFB8007160BF /* DetailViewController.h */,
 				E7D7A2751939BFB8007160BF /* DetailViewController.m */,
+				E71D2AE418FFC11F00D8C1EE /* Images.xcassets */,
+				E71D2ADE18FFC11F00D8C1EE /* Main_iPad.storyboard */,
+				E71D2ADB18FFC11F00D8C1EE /* Main_iPhone.storyboard */,
 				E7D7A2761939BFB8007160BF /* SearchListViewController.h */,
 				E7D7A2771939BFB8007160BF /* SearchListViewController.m */,
 				E7D7A2781939BFB8007160BF /* SearchResultViewController.h */,
 				E7D7A2791939BFB8007160BF /* SearchResultViewController.m */,
-				E71D2AD818FFC11F00D8C1EE /* AppDelegate.h */,
-				E71D2AD918FFC11F00D8C1EE /* AppDelegate.m */,
-				E71D2ADB18FFC11F00D8C1EE /* Main_iPhone.storyboard */,
-				E71D2ADE18FFC11F00D8C1EE /* Main_iPad.storyboard */,
-				E71D2AE418FFC11F00D8C1EE /* Images.xcassets */,
 				E71D2AD018FFC11F00D8C1EE /* Supporting Files */,
 			);
 			path = "Addressbook-iOS";
