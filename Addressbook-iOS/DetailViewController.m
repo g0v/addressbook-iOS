@@ -20,25 +20,16 @@
 
 @end
 
+
 @implementation DetailViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (void)viewWillAppear:(BOOL)animated
 {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+    [super viewWillAppear:animated];
     
-    NSString *name = [self.onePopolo valueForKeyPath:@"name"];
-    self.nameLabel.text = name;
+    self.nameLabel.text = [self.onePopolo valueForKeyPath:@"name"];
 
-    /* 找尋電話 */
+    /* find phone number */
     self.phone = [[[self.onePopolo valueForKeyPath:@"contact_details"] firstObject] valueForKey:@"value"];
 
     self.telephoneCell.detailTextLabel.text = self.phone;
@@ -46,8 +37,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"確定撥出嗎？" message:self.phone delegate:self cancelButtonTitle:@"饒他一馬" otherButtonTitles:@"怕落去啦", nil];
-    
+    if (!self.phone.length) {
+        return;
+    }
+
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"確定撥出嗎？"
+                                                        message:self.phone
+                                                       delegate:self
+                                              cancelButtonTitle:@"饒他一馬"
+                                              otherButtonTitles:@"怕落去啦", nil];
     [alertView show];
 }
 
@@ -62,8 +60,8 @@
             NSString *dailText = [NSString stringWithFormat:@"tel:%@", self.phone];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:dailText]];
             NSLog(@"dailText: %@",dailText);
-        }
             break;
+        }
             
         default:
             break;
