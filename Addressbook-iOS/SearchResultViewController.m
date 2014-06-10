@@ -23,20 +23,6 @@ static NSString *PushToDetailResultIdentifier = @"PushToDetailResultIdentifier";
 
 @implementation SearchResultViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-
 - (NSArray *)dataFromSection:(NSInteger)section
 {
     if (section == 0) {
@@ -83,7 +69,7 @@ static NSString *PushToDetailResultIdentifier = @"PushToDetailResultIdentifier";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // select on on row
+    // select on one row
     self.selectedIndex = indexPath;
 
     [self performSegueWithIdentifier:PushToDetailResultIdentifier sender:nil];

@@ -51,15 +51,17 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
     /* Check error */
     NSString *searchText = self.searchTextField.text;
 
-    if (!searchText || searchText.length==0) {
-        [sender resignFirstResponder];
+    if (!searchText || searchText.length == 0) {
+        if ([sender canResignFirstResponder]) {
+            [sender resignFirstResponder];
+        }
         return;
     }
 
     /* Start Serach */
     [[[[G0VAddressbookClient sharedClient] fetchOrganizationsWithMatchesString:searchText] continueWithBlock:^id(BFTask *task) {
 
-        if(task.result){
+        if (task.result) {
             PgRestOrganizationResult *orgResult = task.result;
             self.organizationResult = orgResult;
 
