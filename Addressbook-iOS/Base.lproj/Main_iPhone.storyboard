@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Search List View Controller - Search-->
+        <!--Search List View Controller - 搜尋-->
         <scene sceneID="lNL-tV-h59">
             <objects>
                 <viewController id="XQk-dW-GAx" customClass="SearchListViewController" sceneMemberID="viewController">
@@ -74,7 +74,7 @@
                             <constraint firstItem="M9x-5j-fuY" firstAttribute="top" secondItem="d4g-Mn-zQp" secondAttribute="bottom" constant="30" id="iSH-na-31V"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Search" id="qx0-QK-rJd"/>
+                    <navigationItem key="navigationItem" title="搜尋" id="qx0-QK-rJd"/>
                     <connections>
                         <outlet property="searchTextField" destination="M9x-5j-fuY" id="GkZ-6C-LBF"/>
                         <segue destination="bBE-RE-axg" kind="push" identifier="PushToSearchResultIdentifier" id="bhv-Yl-e6c"/>
@@ -137,8 +137,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Tel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mne-2I-EhJ">
-                                                    <rect key="frame" x="15" y="11" width="21" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="電話" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mne-2I-EhJ">
+                                                    <rect key="frame" x="15" y="11" width="34" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -161,8 +161,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Add" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="65S-97-P5k">
-                                                    <rect key="frame" x="15" y="11" width="32" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="地址" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="65S-97-P5k">
+                                                    <rect key="frame" x="15" y="11" width="34" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
