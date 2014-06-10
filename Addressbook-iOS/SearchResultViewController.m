@@ -7,7 +7,9 @@
 //
 
 #import "SearchResultViewController.h"
+
 #import "DetailViewController.h"
+#import "TSMessage.h"
 
 static NSString *govCellReuseIdentifier = @"govCellReuseIdentifier";
 static NSString *PushToDetailResultIdentifier = @"PushToDetailResultIdentifier";

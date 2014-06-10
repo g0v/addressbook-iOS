@@ -8,6 +8,7 @@
 
 #import "SearchListViewController.h"
 #import "SearchResultViewController.h"
+#import "TSMessage.h"
 
 static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
 
@@ -42,6 +43,8 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
         searchResultVC.title = self.searchTextField.text;
         searchResultVC.organizations = self.organizationResult;
         searchResultVC.persons = self.personResult;
+
+        [TSMessage setDefaultViewController:searchResultVC];
     }
 }
 
@@ -58,26 +61,47 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
         return;
     }
 
-    /* Start Serach */
-    [[[[G0VAddressbookClient sharedClient] fetchOrganizationsWithMatchesString:searchText] continueWithBlock:^id(BFTask *task) {
-
+    BFTask *orgTask = [[[G0VAddressbookClient sharedClient] fetchOrganizationsWithMatchesString:searchText] continueWithSuccessBlock:^id(BFTask *task) {
         if (task.result) {
             PgRestOrganizationResult *orgResult = task.result;
             self.organizationResult = orgResult;
-
-            return [[G0VAddressbookClient sharedClient] fetchPersonsWithMatchesString:searchText];
         }
-
         return nil;
-    }] continueWithBlock:^id(BFTask *task) {
-        
+    }];
+
+    BFTask *personTask = [[[G0VAddressbookClient sharedClient] fetchPersonsWithMatchesString:searchText] continueWithSuccessBlock:^id(BFTask *task) {
         if (task.result) {
             PgRestPersonResult *personResult = task.result;
             self.personResult = personResult;
         }
+        return nil;
+    }];
+
+    /* Start Serach */
+    BFTask *fetchRequest = [BFTask taskForCompletionOfAllTasks:@[orgTask,personTask]];
+    [fetchRequest continueWithBlock:^id(BFTask *task) {
 
         /* Change to next page */
         [self performSegueWithIdentifier:PushToSearchResultIdentifier sender:nil];
+
+        if (task.error) {
+            NSString *errorTitle = @"其他錯誤";
+            if ([task.error.domain isEqualToString:NSURLErrorDomain] || [task.error.domain isEqualToString:AFNetworkingErrorDomain]) {
+                errorTitle = @"網路錯誤";
+            }
+            [TSMessage showNotificationWithTitle:errorTitle
+                                        subtitle:[task.error localizedDescription]
+                                            type:TSMessageNotificationTypeError];
+            return nil;
+        }
+
+        // only show message when |task.result| had nothing
+        if (self.organizationResult.entries.count + self.personResult.entries.count == 0) {
+
+            [TSMessage showNotificationWithTitle:@"沒有符合的資料"
+                                        subtitle:@"請重新輸入查詢條件"
+                                            type:TSMessageNotificationTypeMessage];
+        }
 
         return nil;
     }];
