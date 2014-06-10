@@ -19,19 +19,25 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - Bolts (1.0.0)
+  - HexColors (2.2.1)
   - JSONModel (0.13.0)
   - MBProgressHUD (0.8)
+  - TSMessages (0.9.9):
+    - HexColors
 
 DEPENDENCIES:
   - AFNetworking (~> 2.2.2)
   - Bolts (~> 1.0.0)
   - JSONModel (~> 0.13.0)
   - MBProgressHUD (~> 0.8)
+  - TSMessages (~> 0.9.9)
 
 SPEC CHECKSUMS:
   AFNetworking: 68e1959e25ba8fccd98a5d94b8b5e6c4a25e7bd7
   Bolts: 0d6132ce6856f2eac784cfeb3fc3feceac15eae3
+  HexColors: 01384d2bbe8dc4ffa43c3b4135db6e976952d153
   JSONModel: 62ea96b49ea18a8b91ef89c249dba291d8601d82
   MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
+  TSMessages: 2999ef55e532378692e9d14d32da2bb60e285129
 
 COCOAPODS: 0.33.1
