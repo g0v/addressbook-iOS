@@ -121,7 +121,38 @@
 
     while (looping) {
 		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.2]];
-        NSLog(@"I am in loop 0.2s");
+	}
+}
+
+- (void)testFetchOnePersonWithIDString
+{
+    NSString *idString = @"1";
+    __block BOOL looping = YES;
+
+    [[[G0VAddressbookClient sharedClient] fetchPersonsWithMatchesIDString:idString] continueWithBlock:^id(BFTask *task) {
+        looping = NO;
+        [self checkResultWithTask:task];
+        return nil;
+    }];
+
+    while (looping) {
+		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.2]];
+	}
+}
+
+- (void)testFetchOneOrganizationWithIDString
+{
+    NSString *idString = @"1";
+    __block BOOL looping = YES;
+
+    [[[G0VAddressbookClient sharedClient] fetchOrganizationsWithIDString:idString] continueWithBlock:^id(BFTask *task) {
+        looping = NO;
+        [self checkResultWithTask:task];
+        return nil;
+    }];
+
+    while (looping) {
+		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.2]];
 	}
 }
 

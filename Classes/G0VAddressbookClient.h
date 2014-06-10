@@ -39,6 +39,8 @@
 
 @interface G0VAddressbookClient (Organization)
 
+- (BFTask *)fetchOrganizationsWithIDString:(NSString *)idString;
+
 - (BFTask *)fetchOrganizationsWithMatchesString:(NSString *)matchesString;
 
 - (BFTask *)fetchOrganizationsWithMatchesString:(NSString *)matchesString startAtOffset:(long)offset pageLength:(long)pageLength;
@@ -46,6 +48,8 @@
 @end
 
 @interface G0VAddressbookClient (Person)
+
+- (BFTask *)fetchPersonsWithMatchesIDString:(NSString *)idString;
 
 - (BFTask *)fetchPersonsWithMatchesString:(NSString *)matchesString;
 

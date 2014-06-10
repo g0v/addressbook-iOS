@@ -14,6 +14,9 @@ static NSString *kCount = @"count";
 static NSString *kOffset = @"sk";
 static NSString *kLength = @"l";
 
+static NSString *kPerson = @"person";
+static NSString *kOrganizations = @"organizations";
+
 @implementation PagingModel
 
 + (JSONKeyMapper *)keyMapper
@@ -125,6 +128,12 @@ static NSString *kLength = @"l";
 
 @implementation G0VAddressbookClient (Organization)
 
+- (BFTask *)fetchOrganizationsWithIDString:(NSString *)idString
+{
+    NSString *requestPath = [NSString stringWithFormat:@"%@/%@", kOrganizations, idString];
+    return [self _taskWithPath:requestPath classOfDataModel:[PopoloOrganization class] parameters:nil];
+}
+
 - (BFTask *)fetchOrganizationsWithMatchesString:(NSString *)matchesString
 {
     return [self fetchOrganizationsWithMatchesString:matchesString startAtOffset:0 pageLength:0];
@@ -133,7 +142,7 @@ static NSString *kLength = @"l";
 - (BFTask *)fetchOrganizationsWithMatchesString:(NSString *)matchesString startAtOffset:(long)offset pageLength:(long)pageLength
 {
     NSDictionary *paramenters = [self _paramentersWithMatchesName:matchesString startAtOffset:offset pageLength:pageLength];
-    return [self _taskWithPath:@"organizations" classOfDataModel:[PgRestOrganizationResult class] parameters:paramenters];
+    return [self _taskWithPath:kOrganizations classOfDataModel:[PgRestOrganizationResult class] parameters:paramenters];
 }
 
 @end
@@ -141,6 +150,12 @@ static NSString *kLength = @"l";
 #pragma mark - Person
 
 @implementation G0VAddressbookClient (Person)
+
+- (BFTask *)fetchPersonsWithMatchesIDString:(NSString *)idString
+{
+    NSString *requestPath = [NSString stringWithFormat:@"%@/%@", kPerson, idString];
+    return [self _taskWithPath:requestPath classOfDataModel:[PopoloPerson class]  parameters:nil];
+}
 
 - (BFTask *)fetchPersonsWithMatchesString:(NSString *)matchesString
 {
@@ -150,7 +165,7 @@ static NSString *kLength = @"l";
 - (BFTask *)fetchPersonsWithMatchesString:(NSString *)matchesString startAtOffset:(long)offset pageLength:(long)pageLength
 {
     NSDictionary *paramenters = [self _paramentersWithMatchesName:matchesString startAtOffset:offset pageLength:pageLength];
-    return [self _taskWithPath:@"person" classOfDataModel:[PgRestPersonResult class]  parameters:paramenters];
+    return [self _taskWithPath:kPerson classOfDataModel:[PgRestPersonResult class]  parameters:paramenters];
 }
 
 @end
