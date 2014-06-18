@@ -14,11 +14,13 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
 
 @interface SearchListViewController () <UITextFieldDelegate>
 
-@property (nonatomic, weak) IBOutlet UITextField *searchTextField;
-@property (nonatomic, weak) IBOutlet UIImageView *govImageView;
-@property (nonatomic, weak) IBOutlet UIImageView *personImageView;
 @property (nonatomic, strong) PgRestOrganizationResult *organizationResult;
 @property (nonatomic, strong) PgRestPersonResult *personResult;
+@property (nonatomic, weak) IBOutlet UITextField *searchTextField;
+@property (nonatomic, weak) IBOutlet UIButton *organizationButton;
+@property (nonatomic, weak) IBOutlet UIButton *personButton;
+@property (nonatomic, assign) BOOL enableSearchOrganization;
+@property (nonatomic, assign) BOOL enableSearchPerson;
 
 @end
 
@@ -31,6 +33,47 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
 #ifdef DEBUG
     self.searchTextField.text = @"張";
 #endif
+
+    [self.organizationButton addTarget:self
+                                action:@selector(organizationButtonActionWithSender:)
+                      forControlEvents:UIControlEventTouchUpInside];
+
+    [self.personButton addTarget:self
+                          action:@selector(personButtonActionWithSender:)
+                forControlEvents:UIControlEventTouchUpInside];
+
+    self.enableSearchOrganization = YES;
+    self.enableSearchPerson = YES;
+    [self updateButtonImage];
+}
+
+- (void)organizationButtonActionWithSender:(id)sender
+{
+    self.enableSearchOrganization = !self.enableSearchOrganization;
+
+    [self updateButtonImage];
+}
+
+- (void)personButtonActionWithSender:(id)sender
+{
+    self.enableSearchPerson = !self.enableSearchPerson;
+
+    [self updateButtonImage];
+}
+
+- (void)updateButtonImage
+{
+    if (self.enableSearchOrganization) {
+        [self.organizationButton setImage:[UIImage imageNamed:@"organization_selected.png"] forState:UIControlStateNormal];
+    } else {
+        [self.organizationButton setImage:[UIImage imageNamed:@"organization_normal.png"] forState:UIControlStateNormal];
+    }
+
+    if (self.enableSearchPerson) {
+        [self.personButton setImage:[UIImage imageNamed:@"person_selected.png"] forState:UIControlStateNormal];
+    } else {
+        [self.personButton setImage:[UIImage imageNamed:@"person_normal.png"] forState:UIControlStateNormal];
+    }
 }
 
 #pragma -
@@ -41,8 +84,13 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
     if ([segue.identifier isEqualToString:PushToSearchResultIdentifier]) {
         SearchResultViewController *searchResultVC = segue.destinationViewController;
         searchResultVC.title = self.searchTextField.text;
-        searchResultVC.organizations = self.organizationResult;
-        searchResultVC.persons = self.personResult;
+
+        if (self.enableSearchOrganization) {
+            searchResultVC.organizations = self.organizationResult;
+        }
+        if (self.enableSearchPerson) {
+            searchResultVC.persons = self.personResult;
+        }
 
         [TSMessage setDefaultViewController:searchResultVC];
     }
@@ -61,6 +109,18 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
         return;
     }
 
+    if (self.enableSearchOrganization == NO && self.enableSearchPerson == NO) {
+        [TSMessage showNotificationInViewController:self
+                                              title:@"沒有選擇搜尋的項目"
+                                           subtitle:@"必需選擇一項搜尋條件"
+                                               type:TSMessageNotificationTypeWarning];
+        return;
+    }
+
+    self.organizationResult = nil;
+    self.personResult = nil;
+
+    // Prepare to search
     BFTask *orgTask = [[[G0VAddressbookClient sharedClient] fetchOrganizationsWithMatchesString:searchText] continueWithSuccessBlock:^id(BFTask *task) {
         if (task.result) {
             PgRestOrganizationResult *orgResult = task.result;
@@ -77,8 +137,16 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
         return nil;
     }];
 
+    NSMutableArray *tasks = [NSMutableArray array];
+    if (self.enableSearchOrganization) {
+        [tasks addObject:orgTask];
+    }
+    if (self.enableSearchPerson) {
+        [tasks addObject:personTask];
+    }
+
     /* Start Serach */
-    BFTask *fetchRequest = [BFTask taskForCompletionOfAllTasks:@[orgTask,personTask]];
+    BFTask *fetchRequest = [BFTask taskForCompletionOfAllTasks:tasks];
     [fetchRequest continueWithBlock:^id(BFTask *task) {
 
         /* Change to next page */

@@ -31,7 +31,7 @@
                                     <outlet property="delegate" destination="XQk-dW-GAx" id="nkh-Uz-v2r"/>
                                 </connections>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pattern.png" translatesAutoresizingMaskIntoConstraints="NO" id="Mou-fj-B3M">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="title.png" translatesAutoresizingMaskIntoConstraints="NO" id="Mou-fj-B3M">
                                 <rect key="frame" x="60" y="152" width="200" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
@@ -46,7 +46,7 @@
                                     <constraint firstAttribute="width" constant="120" id="dMv-8p-Woc"/>
                                     <constraint firstAttribute="height" constant="120" id="kU5-9Y-pA5"/>
                                 </constraints>
-                                <state key="normal" image="Screen Shot 2014-04-19 at 4.31.10 PM.png">
+                                <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -57,7 +57,7 @@
                                     <constraint firstAttribute="height" constant="120" id="1l6-De-sV3"/>
                                     <constraint firstAttribute="width" constant="120" id="b9k-pc-fxc"/>
                                 </constraints>
-                                <state key="normal" image="Screen Shot 2014-04-19 at 4.31.24 PM.png">
+                                <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -76,6 +76,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="搜尋" id="qx0-QK-rJd"/>
                     <connections>
+                        <outlet property="organizationButton" destination="pkS-sK-sPl" id="7U8-OS-Au5"/>
+                        <outlet property="personButton" destination="fcF-tO-09F" id="bzK-85-kX2"/>
                         <outlet property="searchTextField" destination="M9x-5j-fuY" id="GkZ-6C-LBF"/>
                         <segue destination="bBE-RE-axg" kind="push" identifier="PushToSearchResultIdentifier" id="bhv-Yl-e6c"/>
                     </connections>
@@ -305,9 +307,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Screen Shot 2014-04-19 at 4.31.10 PM.png" width="202" height="207"/>
-        <image name="Screen Shot 2014-04-19 at 4.31.24 PM.png" width="206" height="198"/>
-        <image name="pattern.png" width="482" height="92"/>
+        <image name="title.png" width="482" height="92"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
