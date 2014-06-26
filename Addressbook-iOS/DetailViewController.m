@@ -8,6 +8,8 @@
 
 #import "DetailViewController.h"
 
+#import "UIImageView+AFNetworking.h"
+
 @interface DetailViewController () <UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *profileImageCell;
@@ -33,6 +35,12 @@
     self.phone = [[[self.onePopolo valueForKeyPath:@"contact_details"] firstObject] valueForKey:@"value"];
 
     self.telephoneCell.detailTextLabel.text = self.phone;
+
+    // fetch popolo's image
+    NSString *imageURLString = [self.onePopolo valueForKeyPath:@"image"];
+    if (imageURLString) {
+        [self.partyImageView setImageWithURL:[NSURL URLWithString:imageURLString]];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
