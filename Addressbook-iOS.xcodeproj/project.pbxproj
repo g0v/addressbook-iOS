@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		0EB0FA7FCD844E66AAFEB648 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DFD81DCAB624E8B84B14AE4 /* libPods.a */; };
 		7B54C3EB1206429590D25CA2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DFD81DCAB624E8B84B14AE4 /* libPods.a */; };
+		E70DFB1619C5E1AD0034D540 /* search_organizations.json in Resources */ = {isa = PBXBuildFile; fileRef = E70DFB1519C5E1AD0034D540 /* search_organizations.json */; };
+		E70DFB1819C5E4A50034D540 /* search_person.json in Resources */ = {isa = PBXBuildFile; fileRef = E70DFB1719C5E4A50034D540 /* search_person.json */; };
+		E70DFB1A19C5E6C20034D540 /* error.json in Resources */ = {isa = PBXBuildFile; fileRef = E70DFB1919C5E6C20034D540 /* error.json */; };
+		E70DFB1D19C5E7E90034D540 /* organizations_1.json in Resources */ = {isa = PBXBuildFile; fileRef = E70DFB1B19C5E7E90034D540 /* organizations_1.json */; };
+		E70DFB1E19C5E7E90034D540 /* person_1.json in Resources */ = {isa = PBXBuildFile; fileRef = E70DFB1C19C5E7E90034D540 /* person_1.json */; };
 		E71D2ACA18FFC11F00D8C1EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E71D2AC918FFC11F00D8C1EE /* Foundation.framework */; };
 		E71D2ACC18FFC11F00D8C1EE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E71D2ACB18FFC11F00D8C1EE /* CoreGraphics.framework */; };
 		E71D2ACE18FFC11F00D8C1EE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E71D2ACD18FFC11F00D8C1EE /* UIKit.framework */; };
@@ -53,6 +58,11 @@
 /* Begin PBXFileReference section */
 		3DFD81DCAB624E8B84B14AE4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF828E3BF23245A3BCEDF6FF /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		E70DFB1519C5E1AD0034D540 /* search_organizations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = search_organizations.json; sourceTree = "<group>"; };
+		E70DFB1719C5E4A50034D540 /* search_person.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = search_person.json; sourceTree = "<group>"; };
+		E70DFB1919C5E6C20034D540 /* error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = error.json; sourceTree = "<group>"; };
+		E70DFB1B19C5E7E90034D540 /* organizations_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = organizations_1.json; sourceTree = "<group>"; };
+		E70DFB1C19C5E7E90034D540 /* person_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = person_1.json; sourceTree = "<group>"; };
 		E71D2AC618FFC11F00D8C1EE /* Addressbook-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Addressbook-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E71D2AC918FFC11F00D8C1EE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E71D2ACB18FFC11F00D8C1EE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -124,6 +134,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E70DFB1219C5E0610034D540 /* TestData */ = {
+			isa = PBXGroup;
+			children = (
+				E70DFB1919C5E6C20034D540 /* error.json */,
+				E70DFB1B19C5E7E90034D540 /* organizations_1.json */,
+				E70DFB1C19C5E7E90034D540 /* person_1.json */,
+				E70DFB1519C5E1AD0034D540 /* search_organizations.json */,
+				E70DFB1719C5E4A50034D540 /* search_person.json */,
+			);
+			path = TestData;
+			sourceTree = "<group>";
+		};
 		E71D2ABD18FFC11F00D8C1EE = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				E71D2AF718FFC11F00D8C1EE /* Addressbook_iOSTests.m */,
+				E70DFB1219C5E0610034D540 /* TestData */,
 				E71D2AF218FFC11F00D8C1EE /* Supporting Files */,
 			);
 			path = "Addressbook-iOSTests";
@@ -356,7 +379,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E70DFB1A19C5E6C20034D540 /* error.json in Resources */,
 				E71D2AF618FFC11F00D8C1EE /* InfoPlist.strings in Resources */,
+				E70DFB1619C5E1AD0034D540 /* search_organizations.json in Resources */,
+				E70DFB1819C5E4A50034D540 /* search_person.json in Resources */,
+				E70DFB1E19C5E7E90034D540 /* person_1.json in Resources */,
+				E70DFB1D19C5E7E90034D540 /* organizations_1.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

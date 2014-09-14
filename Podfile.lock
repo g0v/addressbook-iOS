@@ -23,6 +23,9 @@ PODS:
   - HexColors (2.2.1)
   - JSONModel (0.13.0)
   - MBProgressHUD (0.8)
+  - OHHTTPStubs (3.1.5):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/Core (3.1.5)
   - TSMessages (0.9.9):
     - HexColors
 
@@ -32,6 +35,7 @@ DEPENDENCIES:
   - CrashlyticsFramework (~> 2.2.0)
   - JSONModel (~> 0.13.0)
   - MBProgressHUD (~> 0.8)
+  - OHHTTPStubs (~> 3.1.5)
   - TSMessages (~> 0.9.9)
 
 SPEC CHECKSUMS:
@@ -41,6 +45,7 @@ SPEC CHECKSUMS:
   HexColors: 01384d2bbe8dc4ffa43c3b4135db6e976952d153
   JSONModel: 62ea96b49ea18a8b91ef89c249dba291d8601d82
   MBProgressHUD: c356980b0cd097f19acec959b49dca5eb8ec31be
+  OHHTTPStubs: c1e362552b71b81e1deb7a80f44c51585b946c43
   TSMessages: 2999ef55e532378692e9d14d32da2bb60e285129
 
 COCOAPODS: 0.33.1
