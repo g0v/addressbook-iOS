@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface DetailViewController : UITableViewController
 
 @property (nonatomic, strong) JSONModel *onePopolo;

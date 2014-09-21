@@ -47,6 +47,8 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
     [self updateButtonImage];
 }
 
+#pragma mark - UI action
+
 - (void)organizationButtonActionWithSender:(id)sender
 {
     self.enableSearchOrganization = !self.enableSearchOrganization;
@@ -76,7 +78,7 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
     }
 }
 
-#pragma -
+#pragma - ViewController
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -96,8 +98,9 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
     }
 }
 
-/* Search */
-- (IBAction)searchTextFieldEditingDidEnd:(id)sender
+#pragma mark - Search
+
+- (IBAction)TextFieldDidEndOnExit:(id)sender
 {
     /* Check error */
     NSString *searchText = self.searchTextField.text;
@@ -173,9 +176,6 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
 
         return nil;
     }];
-}
-
-- (IBAction)TextFieldDidEndOnExit:(id)sender {
 }
 
 @end

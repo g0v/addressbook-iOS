@@ -10,29 +10,29 @@
 	<string>Addressbook-iOS</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>AE571B4B-BAE1-4C5A-BF2F-C6FC7306DABF</key>
+		<key>21892B8163827A16780FF7E667AA43CDD81FBFCF</key>
 		<string>https://github.com/g0v/addressbook-iOS</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Addressbook-iOS.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>AE571B4B-BAE1-4C5A-BF2F-C6FC7306DABF</key>
+		<key>21892B8163827A16780FF7E667AA43CDD81FBFCF</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/g0v/addressbook-iOS</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>AE571B4B-BAE1-4C5A-BF2F-C6FC7306DABF</string>
+	<string>21892B8163827A16780FF7E667AA43CDD81FBFCF</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>AE571B4B-BAE1-4C5A-BF2F-C6FC7306DABF</string>
+			<string>21892B8163827A16780FF7E667AA43CDD81FBFCF</string>
 			<key>IDESourceControlWCCName</key>
 			<string>addressbook-iOS</string>
 		</dict>

@@ -11,8 +11,8 @@
 #import "DetailViewController.h"
 #import "TSMessage.h"
 
-static NSString *govCellReuseIdentifier = @"govCellReuseIdentifier";
-static NSString *PushToDetailResultIdentifier = @"PushToDetailResultIdentifier";
+static NSString *const govCellReuseIdentifier = @"govCellReuseIdentifier";
+static NSString *const PushToDetailResultIdentifier = @"PushToDetailResultIdentifier";
 
 
 @interface SearchResultViewController () <UITableViewDelegate,UITableViewDataSource>

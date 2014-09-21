@@ -43,6 +43,8 @@
 		E7D7A27A1939BFB8007160BF /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7D7A2751939BFB8007160BF /* DetailViewController.m */; };
 		E7D7A27B1939BFB8007160BF /* SearchListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7D7A2771939BFB8007160BF /* SearchListViewController.m */; };
 		E7D7A27C1939BFB8007160BF /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7D7A2791939BFB8007160BF /* SearchResultViewController.m */; };
+		E9455DEA19CE460800DC10C4 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9455DE919CE460800DC10C4 /* SettingViewController.m */; };
+		E9455DED19CE46F400DC10C4 /* BookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9455DEC19CE46F400DC10C4 /* BookmarkViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +108,10 @@
 		E7D7A2771939BFB8007160BF /* SearchListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchListViewController.m; sourceTree = "<group>"; };
 		E7D7A2781939BFB8007160BF /* SearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultViewController.h; sourceTree = "<group>"; };
 		E7D7A2791939BFB8007160BF /* SearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultViewController.m; sourceTree = "<group>"; };
+		E9455DE819CE460800DC10C4 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		E9455DE919CE460800DC10C4 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		E9455DEB19CE46F400DC10C4 /* BookmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkViewController.h; sourceTree = "<group>"; };
+		E9455DEC19CE46F400DC10C4 /* BookmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +249,8 @@
 				E7D7A2771939BFB8007160BF /* SearchListViewController.m */,
 				E7D7A2781939BFB8007160BF /* SearchResultViewController.h */,
 				E7D7A2791939BFB8007160BF /* SearchResultViewController.m */,
+				E9F5A57019CEC0C4002E54E6 /* Setting */,
+				E9F5A56F19CEC0BA002E54E6 /* Bookmark */,
 			);
 			name = ViewController;
 			path = "Addressbook-iOS";
@@ -277,6 +285,24 @@
 				E777C5BD19227FAF0050AC9B /* PopoloPerson.m */,
 			);
 			name = PopoloModel;
+			sourceTree = "<group>";
+		};
+		E9F5A56F19CEC0BA002E54E6 /* Bookmark */ = {
+			isa = PBXGroup;
+			children = (
+				E9455DEB19CE46F400DC10C4 /* BookmarkViewController.h */,
+				E9455DEC19CE46F400DC10C4 /* BookmarkViewController.m */,
+			);
+			name = Bookmark;
+			sourceTree = "<group>";
+		};
+		E9F5A57019CEC0C4002E54E6 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				E9455DE819CE460800DC10C4 /* SettingViewController.h */,
+				E9455DE919CE460800DC10C4 /* SettingViewController.m */,
+			);
+			name = Setting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -474,9 +500,11 @@
 			files = (
 				E777C5C919227FAF0050AC9B /* PopoloOtherName.m in Sources */,
 				E777C5C719227FAF0050AC9B /* PopoloOrganization.m in Sources */,
+				E9455DEA19CE460800DC10C4 /* SettingViewController.m in Sources */,
 				E777C5CA19227FAF0050AC9B /* PopoloPerson.m in Sources */,
 				E71D2ADA18FFC11F00D8C1EE /* AppDelegate.m in Sources */,
 				E777C5C419227FAF0050AC9B /* PopoloIdentifier.m in Sources */,
+				E9455DED19CE46F400DC10C4 /* BookmarkViewController.m in Sources */,
 				E7D7A27A1939BFB8007160BF /* DetailViewController.m in Sources */,
 				E73B8A3818FFD9440038C01B /* G0VAddressbookClient.m in Sources */,
 				E71D2AD618FFC11F00D8C1EE /* main.m in Sources */,
