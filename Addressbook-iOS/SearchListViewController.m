@@ -152,9 +152,6 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
     BFTask *fetchRequest = [BFTask taskForCompletionOfAllTasks:tasks];
     [fetchRequest continueWithBlock:^id(BFTask *task) {
 
-        /* Change to next page */
-        [self performSegueWithIdentifier:PushToSearchResultIdentifier sender:nil];
-
         if (task.error) {
             NSString *errorTitle = @"其他錯誤";
             if ([task.error.domain isEqualToString:NSURLErrorDomain] || [task.error.domain isEqualToString:AFNetworkingErrorDomain]) {
@@ -168,11 +165,14 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
 
         // only show message when |task.result| had nothing
         if (self.organizationResult.entries.count + self.personResult.entries.count == 0) {
-
             [TSMessage showNotificationWithTitle:@"沒有符合的資料"
                                         subtitle:@"請重新輸入查詢條件"
                                             type:TSMessageNotificationTypeMessage];
+            return nil;
         }
+        
+        /* Change to next page */
+        [self performSegueWithIdentifier:PushToSearchResultIdentifier sender:nil];
 
         return nil;
     }];
