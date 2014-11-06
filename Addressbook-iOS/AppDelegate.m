@@ -11,6 +11,10 @@
 #import "AFNetworkActivityIndicatorManager.h"
 #import "Crashlytics.h"
 
+#import "OHHTTPStubs.h"
+
+
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -18,8 +22,60 @@
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
 
     [Crashlytics startWithAPIKey:@"aa4bea7059a82c8870fd136c48413ae4cd41082c"];
+    
+#if DEBUG
+    [self _setUpOHHTTPStubs];
+#endif
+    
     return YES;
 }
+
+- (void)_setUpOHHTTPStubs
+{
+    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+        return [request.URL.host isEqualToString:@"pgrest.io"];
+    } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
+        
+        NSDictionary *jsonHeader = @{@"Content-Type":@"text/json"};
+        // Organizations
+        if ([request.URL.absoluteString rangeOfString:@"organizations?" options:NSBackwardsSearch].location != NSNotFound) {
+            NSString *organizations = OHPathForFileInBundle(@"search_organizations.json", nil);
+            return [OHHTTPStubsResponse responseWithFileAtPath:organizations
+                                                    statusCode:200
+                                                       headers:jsonHeader];
+        }
+        
+        // Person
+        if ([request.URL.absoluteString rangeOfString:@"person?" options:NSBackwardsSearch].location != NSNotFound) {
+            NSString *person = OHPathForFileInBundle(@"search_person.json", nil);
+            return [OHHTTPStubsResponse responseWithFileAtPath:person
+                                                    statusCode:200
+                                                       headers:jsonHeader];
+        }
+        
+        // Organization ID
+        if ([request.URL.absoluteString rangeOfString:@"organizations/1" options:NSBackwardsSearch].location != NSNotFound) {
+            NSString *organizations_1 = OHPathForFileInBundle(@"organizations_1.json", nil);
+            return [OHHTTPStubsResponse responseWithFileAtPath:organizations_1
+                                                    statusCode:200
+                                                       headers:jsonHeader];
+        }
+        // Person ID
+        if ([request.URL.absoluteString rangeOfString:@"person/1" options:NSBackwardsSearch].location != NSNotFound) {
+            NSString *person_1 = OHPathForFileInBundle(@"person_1.json", nil);
+            return [OHHTTPStubsResponse responseWithFileAtPath:person_1
+                                                    statusCode:200
+                                                       headers:jsonHeader];
+        }
+        
+        // Error
+        NSString *error = OHPathForFileInBundle(@"error.json", nil);
+        return [OHHTTPStubsResponse responseWithFileAtPath:error
+                                                statusCode:404
+                                                   headers:jsonHeader];
+    }];
+}
+
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {

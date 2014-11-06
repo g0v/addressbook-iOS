@@ -29,32 +29,45 @@
 {
     [super viewWillAppear:animated];
     
+    //Name
     self.nameLabel.text = [self.onePopolo valueForKeyPath:@"name"];
 
-    /* find phone number */
+    //Phone
     self.phone = [[[self.onePopolo valueForKeyPath:@"contact_details"] firstObject] valueForKey:@"value"];
+    NSString *phoneString = (self.phone)? self.phone : @"無";
+    self.telephoneCell.detailTextLabel.text = phoneString;
 
-    self.telephoneCell.detailTextLabel.text = self.phone;
-
-    // fetch popolo's image
+    //Photo
     NSString *imageURLString = [self.onePopolo valueForKeyPath:@"image"];
+    NSURL *imageURL = [NSURL URLWithString:imageURLString];
     if (imageURLString) {
-        [self.partyImageView setImageWithURL:[NSURL URLWithString:imageURLString]];
+        [self.profileImageCell.imageView setImageWithURL:imageURL];
+        self.profileImageCell.imageView.contentMode = UIViewContentModeScaleAspectFill;
     }
+    
+    
+    NSString *email = [self.onePopolo valueForKeyPath:@"email"];
+    NSString *emailString = (email)? email:@"無";
+    self.emailCell.textLabel.text = emailString;
+    //Party
+//        [self.profileImageCell.imageView setImageWithURL:imageURL];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!self.phone.length) {
-        return;
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row==1) {
+        if (!self.phone.length) {
+            return;
+        }
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"確定撥出嗎？"
+                                                            message:self.phone
+                                                           delegate:self
+                                                  cancelButtonTitle:@"饒他一馬"
+                                                  otherButtonTitles:@"怕落去啦", nil];
+        [alertView show];
     }
-
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"確定撥出嗎？"
-                                                        message:self.phone
-                                                       delegate:self
-                                              cancelButtonTitle:@"饒他一馬"
-                                              otherButtonTitles:@"怕落去啦", nil];
-    [alertView show];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

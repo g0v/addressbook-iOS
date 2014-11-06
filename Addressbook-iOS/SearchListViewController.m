@@ -99,19 +99,18 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
 }
 
 #pragma mark - Search
-
-- (IBAction)TextFieldDidEndOnExit:(id)sender
+- (void)search
 {
     /* Check error */
     NSString *searchText = self.searchTextField.text;
-
+    
     if (!searchText || searchText.length == 0) {
-        if ([sender canResignFirstResponder]) {
-            [sender resignFirstResponder];
+        if ([self.searchTextField canResignFirstResponder]) {
+            [self.searchTextField resignFirstResponder];
         }
         return;
     }
-
+    
     if (self.enableSearchOrganization == NO && self.enableSearchPerson == NO) {
         [TSMessage showNotificationInViewController:self
                                               title:@"沒有選擇搜尋的項目"
@@ -119,10 +118,10 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
                                                type:TSMessageNotificationTypeWarning];
         return;
     }
-
+    
     self.organizationResult = nil;
     self.personResult = nil;
-
+    
     // Prepare to search
     BFTask *orgTask = [[[G0VAddressbookClient sharedClient] fetchOrganizationsWithMatchesString:searchText] continueWithSuccessBlock:^id(BFTask *task) {
         if (task.result) {
@@ -131,7 +130,7 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
         }
         return nil;
     }];
-
+    
     BFTask *personTask = [[[G0VAddressbookClient sharedClient] fetchPersonsWithMatchesString:searchText] continueWithSuccessBlock:^id(BFTask *task) {
         if (task.result) {
             PgRestPersonResult *personResult = task.result;
@@ -139,7 +138,7 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
         }
         return nil;
     }];
-
+    
     NSMutableArray *tasks = [NSMutableArray array];
     if (self.enableSearchOrganization) {
         [tasks addObject:orgTask];
@@ -147,11 +146,11 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
     if (self.enableSearchPerson) {
         [tasks addObject:personTask];
     }
-
+    
     /* Start Serach */
     BFTask *fetchRequest = [BFTask taskForCompletionOfAllTasks:tasks];
     [fetchRequest continueWithBlock:^id(BFTask *task) {
-
+        
         if (task.error) {
             NSString *errorTitle = @"其他錯誤";
             if ([task.error.domain isEqualToString:NSURLErrorDomain] || [task.error.domain isEqualToString:AFNetworkingErrorDomain]) {
@@ -162,7 +161,7 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
                                             type:TSMessageNotificationTypeError];
             return nil;
         }
-
+        
         // only show message when |task.result| had nothing
         if (self.organizationResult.entries.count + self.personResult.entries.count == 0) {
             [TSMessage showNotificationWithTitle:@"沒有符合的資料"
@@ -173,9 +172,18 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
         
         /* Change to next page */
         [self performSegueWithIdentifier:PushToSearchResultIdentifier sender:nil];
-
+        
         return nil;
     }];
+}
+
+- (IBAction)searchButtonPressed:(id)sender {
+    [self search];
+}
+
+- (IBAction)TextFieldDidEndOnExit:(id)sender
+{
+    [self search];
 }
 
 @end
