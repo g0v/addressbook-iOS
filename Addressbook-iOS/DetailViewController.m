@@ -7,7 +7,9 @@
 //
 
 #import "DetailViewController.h"
+
 #import "UIImageView+AFNetworking.h"
+#import "JSONModel+PopoloPerson.h"
 
 @interface DetailViewController () <UIAlertViewDelegate>
 
@@ -43,10 +45,12 @@
         [self.profileImageCell.imageView setImageWithURL:imageURL];
         self.profileImageCell.imageView.contentMode = UIViewContentModeScaleAspectFill;
     }
-    
-    
-    NSString *email = [self.onePopolo valueForKeyPath:@"email"];
-    NSString *emailString = (email)? email:@"無";
+
+    NSString *emailString;
+    if (self.onePopolo.isPerson) {
+        NSString *email = [self.onePopolo valueForKeyPath:@"email"];
+        emailString = (email)? email:@"無";
+    }
     self.emailCell.textLabel.text = emailString;
     //Party
 //        [self.profileImageCell.imageView setImageWithURL:imageURL];
@@ -88,7 +92,7 @@
     }
 }
 - (IBAction)bookmark:(id)sender {
-    if ([self.onePopolo isKindOfClass:[PopoloPerson class]]) {
+    if (self.onePopolo.isPerson) {
         [[FileManager sharedInstance] writePerson:(PopoloPerson *)self.onePopolo];
     }
     else{

@@ -10,6 +10,7 @@
 		0EB0FA7FCD844E66AAFEB648 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DFD81DCAB624E8B84B14AE4 /* libPods.a */; };
 		7B54C3EB1206429590D25CA2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DFD81DCAB624E8B84B14AE4 /* libPods.a */; };
 		E3D3D8E31A0C965A0005EE47 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3D3D8E21A0C965A0005EE47 /* FileManager.m */; };
+		E70860FB1A0D27D200D087E0 /* JSONModel+PopoloPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = E70860FA1A0D27D200D087E0 /* JSONModel+PopoloPerson.m */; };
 		E70DFB1619C5E1AD0034D540 /* search_organizations.json in Resources */ = {isa = PBXBuildFile; fileRef = E70DFB1519C5E1AD0034D540 /* search_organizations.json */; };
 		E70DFB1819C5E4A50034D540 /* search_person.json in Resources */ = {isa = PBXBuildFile; fileRef = E70DFB1719C5E4A50034D540 /* search_person.json */; };
 		E70DFB1A19C5E6C20034D540 /* error.json in Resources */ = {isa = PBXBuildFile; fileRef = E70DFB1919C5E6C20034D540 /* error.json */; };
@@ -68,6 +69,8 @@
 		D8E7351BDD1C82412B6A1F86 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E3D3D8E11A0C965A0005EE47 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
 		E3D3D8E21A0C965A0005EE47 /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
+		E70860F91A0D27D200D087E0 /* JSONModel+PopoloPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "JSONModel+PopoloPerson.h"; path = "Classes/JSONModel+PopoloPerson.h"; sourceTree = "<group>"; };
+		E70860FA1A0D27D200D087E0 /* JSONModel+PopoloPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "JSONModel+PopoloPerson.m"; path = "Classes/JSONModel+PopoloPerson.m"; sourceTree = "<group>"; };
 		E70DFB1519C5E1AD0034D540 /* search_organizations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = search_organizations.json; sourceTree = "<group>"; };
 		E70DFB1719C5E4A50034D540 /* search_person.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = search_person.json; sourceTree = "<group>"; };
 		E70DFB1919C5E6C20034D540 /* error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = error.json; sourceTree = "<group>"; };
@@ -303,6 +306,8 @@
 				E777C5BB19227FAF0050AC9B /* PopoloOtherName.m */,
 				E777C5BC19227FAF0050AC9B /* PopoloPerson.h */,
 				E777C5BD19227FAF0050AC9B /* PopoloPerson.m */,
+				E70860F91A0D27D200D087E0 /* JSONModel+PopoloPerson.h */,
+				E70860FA1A0D27D200D087E0 /* JSONModel+PopoloPerson.m */,
 			);
 			name = PopoloModel;
 			sourceTree = "<group>";
@@ -532,6 +537,7 @@
 				E9455DED19CE46F400DC10C4 /* BookmarkViewController.m in Sources */,
 				E7D7A27A1939BFB8007160BF /* DetailViewController.m in Sources */,
 				E3D3D8E31A0C965A0005EE47 /* FileManager.m in Sources */,
+				E70860FB1A0D27D200D087E0 /* JSONModel+PopoloPerson.m in Sources */,
 				E73B8A3818FFD9440038C01B /* G0VAddressbookClient.m in Sources */,
 				E71D2AD618FFC11F00D8C1EE /* main.m in Sources */,
 				E7D7A27B1939BFB8007160BF /* SearchListViewController.m in Sources */,
