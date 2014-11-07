@@ -1,11 +1,11 @@
 PODS:
   - AFNetworking (2.2.2):
-    - AFNetworking/NSURLConnection (= 2.2.2)
-    - AFNetworking/NSURLSession (= 2.2.2)
-    - AFNetworking/Reachability (= 2.2.2)
-    - AFNetworking/Security (= 2.2.2)
-    - AFNetworking/Serialization (= 2.2.2)
-    - AFNetworking/UIKit (= 2.2.2)
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+    - AFNetworking/UIKit
   - AFNetworking/NSURLConnection (2.2.2):
     - AFNetworking/Reachability
     - AFNetworking/Security
@@ -19,7 +19,7 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - BlocksKit (2.2.5):
-    - BlocksKit/All (= 2.2.5)
+    - BlocksKit/All
   - BlocksKit/All (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
@@ -39,7 +39,7 @@ PODS:
   - JSONModel (0.13.0)
   - MBProgressHUD (0.8)
   - OHHTTPStubs (3.1.5):
-    - OHHTTPStubs/Core (= 3.1.5)
+    - OHHTTPStubs/Core
   - OHHTTPStubs/Core (3.1.5)
   - TSMessages (0.9.9):
     - HexColors
@@ -65,4 +65,4 @@ SPEC CHECKSUMS:
   OHHTTPStubs: c1e362552b71b81e1deb7a80f44c51585b946c43
   TSMessages: 2999ef55e532378692e9d14d32da2bb60e285129
 
-COCOAPODS: 0.35.0.rc2
+COCOAPODS: 0.34.4
