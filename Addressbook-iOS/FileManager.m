@@ -30,11 +30,22 @@
     NSError *error;
     NSArray *peopleFileNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[self filePathWithKey:kPeopleFilePathKey] error:&error];
     if (peopleFileNames.count == 0) {
+        NSLog(@"peopleFileNames.count == 0");
         return nil;
     }
-    
+    else{
+//        if ([[NSFileManager defaultManager] fileExistsAtPath:path])
+//        {
+//            NSData *data = [[NSMutableData alloc] initWithContentsOfFile:path];
+//            NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc]
+//                                             initForReadingWithData:data];
+//            MyObject *obj = [unarchiver decodeObjectForKey:@"MY_OBJ"];
+//            [unarchiver finishDecoding];
+//            NSLog(@"name %@ age %d color %@", obj.name, obj.age,
+//                  obj.color);
+//        }
+    }
     NSLog(@"%@",peopleFileNames);
-    
     return people;
 }
 
@@ -57,7 +68,13 @@
                                  initForWritingWithMutableData:data];
     [archiver encodeObject:person forKey:kKeyForEncodePopoloPerson];
     [archiver finishEncoding];
-    [data writeToFile:filePath atomically:YES];
+    BOOL didWrite = [data writeToFile:filePath atomically:YES];
+    if (didWrite) {
+        NSLog(@"did writePerson");
+    }
+    else{
+        NSLog(@"did not writePerson");
+    }
 }
 
 - (void)writeOrganization:(PopoloOrganization *)organization

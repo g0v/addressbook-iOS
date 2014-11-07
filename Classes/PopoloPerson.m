@@ -7,9 +7,6 @@
 
 #import "PopoloPerson.h"
 
-static NSString * const kKeyForEncodePopoloPerson = @"kKeyForEncodePopoloPerson";
-static NSString * const kKeyForEncodePopoloOrganization = @"kKeyForEncodePopoloOrganization";
-
 static NSString * const kKeyForEncodeName = @"kKeyForEncodeName";
 static NSString * const kKeyForEncodeId = @"kKeyForEncodeId";
 static NSString * const kKeyForEncodeContactDetails = @"kKeyForEncodeContactDetails";
@@ -22,7 +19,6 @@ static NSString * const kKeyForEncodeImage = @"kKeyForEncodeImage";
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [super encodeWithCoder:aCoder];
     [aCoder encodeObject:self.name forKey:kKeyForEncodeName];
 
 //    [aCoder encodeObject:self.id forKey:kKeyForEncodeId];

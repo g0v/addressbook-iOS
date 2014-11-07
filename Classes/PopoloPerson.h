@@ -12,8 +12,8 @@
 #import "PopoloLink.h"
 #import "PopoloOtherName.h"
 
-static NSString * const kKeyForEncodePopoloPerson;
-static NSString * const kKeyForEncodePopoloOrganization;
+static NSString * const kKeyForEncodePopoloPerson = @"kKeyForEncodePopoloPerson";
+static NSString * const kKeyForEncodePopoloOrganization = @"kKeyForEncodePopoloOrganization";
 
 @protocol PopoloPerson
 @end

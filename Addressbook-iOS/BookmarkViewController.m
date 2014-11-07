@@ -19,12 +19,13 @@ static NSString * const BookmarkCellID = @"BookmarkReuseIdentifier";
 
 @implementation BookmarkViewController
 
--(void)viewDidLoad
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidLoad];
+    [super viewDidAppear:animated];
     self.organizations = [[FileManager sharedInstance] readOrganizations];
     self.people = [[FileManager sharedInstance] readPeople];
     
+    [self.tableView reloadData];
 }
 
 #pragma mark - UITableViewDatasource
