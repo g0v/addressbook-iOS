@@ -12,21 +12,30 @@
 static NSString * const BookmarkCellID = @"BookmarkReuseIdentifier";
 
 @interface BookmarkViewController () <UITableViewDataSource, UITableViewDelegate>
-
+@property (nonatomic, strong) NSArray *organizations;
+@property (nonatomic, strong) NSArray *people;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
 @implementation BookmarkViewController
+
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.organizations = [[FileManager sharedInstance] readOrganizations];
+    self.people = [[FileManager sharedInstance] readPeople];
+    
+}
 
 #pragma mark - UITableViewDatasource
 
 - (NSArray *)dataFromSection:(NSInteger)section
 {
     if (section == 0) {
-        return self.organizations.entries;
+        return self.organizations;
     }
     else if (section == 1) {
-        return self.persons.entries;
+        return self.people;
     }
     return nil;
 }

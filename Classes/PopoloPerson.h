@@ -12,6 +12,9 @@
 #import "PopoloLink.h"
 #import "PopoloOtherName.h"
 
+static NSString * const kKeyForEncodePopoloPerson;
+static NSString * const kKeyForEncodePopoloOrganization;
+
 @protocol PopoloPerson
 @end
 
@@ -23,7 +26,7 @@
  JSON Schema: http://popoloproject.com/schemas/person.json#
  */
 
-@interface PopoloPerson : JSONModel
+@interface PopoloPerson : JSONModel <NSCoding>
 
 /**
  id

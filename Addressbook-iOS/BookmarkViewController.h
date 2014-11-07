@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface BookmarkViewController : UIViewController
-@property (nonatomic, strong) PgRestOrganizationResult *organizations;
-@property (nonatomic, strong) PgRestPersonResult *persons;
+
 @end

@@ -20,22 +20,25 @@
     (NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = paths.firstObject;
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:filePathKey];
-    //save content to the documents directory
     return filePath;
 }
 
-- (NSArray *)readPeopleIDs
+- (NSArray *)readPeople
 {
     NSArray *people = nil;
-    NSString *path = [self filePathWithKey:kPeopleFilePathKey];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-        people = [[NSArray alloc] initWithContentsOfFile:kPeopleFilePathKey];
+    
+    NSError *error;
+    NSArray *peopleFileNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[self filePathWithKey:kPeopleFilePathKey] error:&error];
+    if (peopleFileNames.count == 0) {
+        return nil;
     }
+    
+    NSLog(@"%@",peopleFileNames);
     
     return people;
 }
 
-- (NSArray *)readOrganizationsIDs
+- (NSArray *)readOrganizations
 {
     NSArray *organizations = nil;
     NSString *path = [self filePathWithKey:kOrganizationFilePathKey];
@@ -46,66 +49,29 @@
     return organizations;
 }
 
-- (void)writePersonID:(NSString *)identifier
+- (void)writePerson:(PopoloPerson *)person
 {
-    NSMutableArray *peopleIDs = nil;
-    NSString *filePath = [self filePathWithKey:kPeopleFilePathKey];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
-        peopleIDs = [[NSMutableArray alloc] initWithContentsOfFile:kPeopleFilePathKey];
-        [peopleIDs addObject:identifier];
-    }
-    else{
-        peopleIDs = [[NSMutableArray alloc] initWithObjects:identifier, nil];
-    }
-
-    [peopleIDs writeToFile:filePath atomically:YES];
+    NSString *filePath = [[self filePathWithKey:kPeopleFilePathKey] stringByAppendingPathComponent:[person valueForKey:@"id"]];
+    NSMutableData *data = [[NSMutableData alloc] init];
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc]
+                                 initForWritingWithMutableData:data];
+    [archiver encodeObject:person forKey:kKeyForEncodePopoloPerson];
+    [archiver finishEncoding];
+    [data writeToFile:filePath atomically:YES];
 }
 
-- (void)writeOrganizationID:(NSString *)identifier
+- (void)writeOrganization:(PopoloOrganization *)organization
 {
-    NSMutableArray *organizationIDs = nil;
-    NSString *filePath = [self filePathWithKey:kOrganizationFilePathKey];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
-        organizationIDs = [[NSMutableArray alloc] initWithContentsOfFile:kOrganizationFilePathKey];
-        [organizationIDs addObject:identifier];
-    }
-    else{
-        organizationIDs = [[NSMutableArray alloc] initWithObjects:identifier, nil];
-    }
-    
-    [organizationIDs writeToFile:filePath atomically:YES];
+    NSString *filePath = [[self filePathWithKey:kOrganizationFilePathKey] stringByAppendingPathComponent:organization.id];
+    NSMutableData *data = [[NSMutableData alloc] init];
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc]
+                                 initForWritingWithMutableData:data];
+    [archiver encodeObject:organization forKey:kKeyForEncodePopoloOrganization];
+    [archiver finishEncoding];
+    [data writeToFile:filePath atomically:YES];
 }
 
-//- (void)bookmarkWithPerson:(PopoloPerson *)person
-//{
-
-//    NSMutableArray *people = nil;
-//    if ([[NSFileManager defaultManager] fileExistsAtPath:kPeopleFilePathKey]) {
-//        people = [[NSMutableArray alloc] initWithContentsOfFile:kPeopleFilePathKey];
-//        [people addObject:person];
-//    }
-//    else{
-//        people = [[NSMutableArray alloc] initWithObjects:person, nil];
-//    }
-//
-//}
-
-//- (void)bookmarkWithOrganization:(PopoloOrganization *)organization
-//{
-//    NSMutableArray *organizations = nil;
-//    if ([[NSFileManager defaultManager] fileExistsAtPath:kOrganizationFilePathKey]) {
-//        organizations = [[NSMutableArray alloc] initWithContentsOfFile:kOrganizationFilePathKey];
-//        [organizations addObject:organization];
-//    }
-//    else{
-//        organizations = [[NSMutableArray alloc] initWithObjects:organization, nil];
-//    }
-//    
-//    [organizations writeToFile:[self filePathWithKey:kOrganizationFilePathKey] atomically:YES];
-//}
-
-
-+ (id)sharedManager {
++ (id)sharedInstance {
     static FileManager *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -115,5 +81,3 @@
 }
 
 @end
-@end
-

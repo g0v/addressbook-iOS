@@ -89,10 +89,10 @@
 }
 - (IBAction)bookmark:(id)sender {
     if ([self.onePopolo isKindOfClass:[PopoloPerson class]]) {
-        [[FileManager sharedInstance] writePersonID:[self.onePopolo valueForKey:@"id"]];
+        [[FileManager sharedInstance] writePerson:(PopoloPerson *)self.onePopolo];
     }
     else{
-        [[FileManager sharedInstance] writeOrganizationID:[self.onePopolo valueForKey:@"id"]];
+        [[FileManager sharedInstance] writeOrganization:(PopoloOrganization *)self.onePopolo];
     }
 }
 

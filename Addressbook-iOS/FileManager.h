@@ -18,18 +18,18 @@ static NSString * const kOrganizationFilePathKey = @"kOrganizationDictionaryKey"
 
 
 #pragma mark - IDs
-- (NSArray *)readPeopleIDs;
-- (NSArray *)readOrganizationsIDs;
+- (NSArray *)readPeople;
+- (NSArray *)readOrganizations;
 
-- (void)writePersonID:(NSString *)identifier;
-- (void)writeOrganizationID:(NSString *)identifier;
+- (void)writePerson:(PopoloPerson *)person;
+- (void)writeOrganization:(PopoloOrganization *)organization;
 
 #pragma mark - JSON model
-- (NSArray *)bookmarkedPeople;
-- (NSArray *)bookmarkedOrganizations;
-
-- (void)bookmarkWithPerson:(PopoloPerson *)person;
-- (void)bookmarkWithOrganization:(PopoloOrganization *)organization;
+//- (NSArray *)bookmarkedPeople;
+//- (NSArray *)bookmarkedOrganizations;
+//
+//- (void)bookmarkWithPerson:(PopoloPerson *)person;
+//- (void)bookmarkWithOrganization:(PopoloOrganization *)organization;
 
 +(instancetype)sharedInstance;
 @end
