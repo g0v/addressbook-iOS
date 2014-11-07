@@ -99,8 +99,18 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
 }
 
 #pragma mark - Search
+
+static NSLock *searchLock;
 - (void)search
 {
+    @synchronized(searchLock){
+        if (!searchLock) {
+            searchLock = [[NSLock alloc] init];
+        }
+        
+        [searchLock lock];
+    }
+    
     /* Check error */
     NSString *searchText = self.searchTextField.text;
     
@@ -159,6 +169,7 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
             [TSMessage showNotificationWithTitle:errorTitle
                                         subtitle:[task.error localizedDescription]
                                             type:TSMessageNotificationTypeError];
+            [searchLock unlock];
             return nil;
         }
         
@@ -167,12 +178,13 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
             [TSMessage showNotificationWithTitle:@"沒有符合的資料"
                                         subtitle:@"請重新輸入查詢條件"
                                             type:TSMessageNotificationTypeMessage];
+            [searchLock unlock];
             return nil;
         }
         
         /* Change to next page */
         [self performSegueWithIdentifier:PushToSearchResultIdentifier sender:nil];
-        
+        [searchLock unlock];
         return nil;
     }];
 }
@@ -183,7 +195,9 @@ static NSString *PushToSearchResultIdentifier = @"PushToSearchResultIdentifier";
 
 - (IBAction)TextFieldDidEndOnExit:(id)sender
 {
-    [self search];
+//    if (![searchLock tryLock]) {
+//        [self search];
+//    };
 }
 
 @end

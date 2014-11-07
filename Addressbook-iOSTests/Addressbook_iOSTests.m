@@ -81,6 +81,7 @@
 
     if ([result isKindOfClass:[PgRestPersonResult class]]) {
         for (PopoloPerson *person in ((PgRestPersonResult *)result).entries) {
+            NSLog(@"person:%@",person);
             NSLog(@"person name:%@", person.name);
             XCTAssertNotNil(person.name, @"This should had name.");
             XCTAssertNotNil(person.id, @"This must had value.");

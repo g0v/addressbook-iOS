@@ -7,7 +7,6 @@
 //
 
 #import "DetailViewController.h"
-
 #import "UIImageView+AFNetworking.h"
 
 @interface DetailViewController () <UIAlertViewDelegate>
@@ -86,6 +85,14 @@
             
         default:
             break;
+    }
+}
+- (IBAction)bookmark:(id)sender {
+    if ([self.onePopolo isKindOfClass:[PopoloPerson class]]) {
+        [[FileManager sharedInstance] writePersonID:[self.onePopolo valueForKey:@"id"]];
+    }
+    else{
+        [[FileManager sharedInstance] writeOrganizationID:[self.onePopolo valueForKey:@"id"]];
     }
 }
 

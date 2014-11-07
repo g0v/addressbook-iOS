@@ -14,6 +14,9 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import "G0VAddressbookClient.h"
+    #import "FileManager.h"
+    #import "PopoloOrganization.h"
+    #import "PopoloPerson.h"
 #endif
 
 // disable NSLog when it's not debug mode
