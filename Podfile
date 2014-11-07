@@ -12,5 +12,3 @@ pod 'BlocksKit', '~> 2.2.5'
 link_with 'Addressbook-iOS', 'Addressbook-iOSTests'
 
 
-source 'git@gitlab.kkcorp:kkbox-ios/lfaudiotoolbox.git'
-source 'https://github.com/CocoaPods/Specs.git'
