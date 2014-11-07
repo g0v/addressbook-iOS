@@ -18,6 +18,21 @@ PODS:
   - AFNetworking/UIKit (2.2.2):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - BlocksKit (2.2.5):
+    - BlocksKit/All (= 2.2.5)
+  - BlocksKit/All (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+    - BlocksKit/MessageUI
+    - BlocksKit/UIKit
+  - BlocksKit/Core (2.2.5)
+  - BlocksKit/DynamicDelegate (2.2.5)
+  - BlocksKit/MessageUI (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - BlocksKit/UIKit (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
   - Bolts (1.0.0)
   - CrashlyticsFramework (2.2.0)
   - HexColors (2.2.1)
@@ -31,6 +46,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.2.2)
+  - BlocksKit (~> 2.2.5)
   - Bolts (~> 1.0.0)
   - CrashlyticsFramework (~> 2.2.0)
   - JSONModel (~> 0.13.0)
@@ -40,6 +56,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 68e1959e25ba8fccd98a5d94b8b5e6c4a25e7bd7
+  BlocksKit: 4439e7f30a9f90743462ca63545a15c1f4304cef
   Bolts: 0d6132ce6856f2eac784cfeb3fc3feceac15eae3
   CrashlyticsFramework: 1df72ced1f7744bae1daf141f6e314951a0d9c06
   HexColors: 01384d2bbe8dc4ffa43c3b4135db6e976952d153

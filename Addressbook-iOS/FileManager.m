@@ -23,30 +23,29 @@
     return filePath;
 }
 
+- (NSString *)peopleFilePath
+{
+    NSString *peoplePath = [self filePathWithKey:kKeyForEncodePopoloPerson];
+    return peoplePath;
+}
+
 - (NSArray *)readPeople
 {
-    NSArray *people = nil;
-    
     NSError *error;
-    NSArray *peopleFileNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[self filePathWithKey:kPeopleFilePathKey] error:&error];
-    if (peopleFileNames.count == 0) {
-        NSLog(@"peopleFileNames.count == 0");
+    NSArray *peopleFiles = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[self peopleFilePath] error:&error];
+    if (peopleFiles.count ==0) {
+        NSLog(@"peopleFiles.count ==0");
         return nil;
     }
-    else{
-//        if ([[NSFileManager defaultManager] fileExistsAtPath:path])
-//        {
-//            NSData *data = [[NSMutableData alloc] initWithContentsOfFile:path];
-//            NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc]
-//                                             initForReadingWithData:data];
-//            MyObject *obj = [unarchiver decodeObjectForKey:@"MY_OBJ"];
-//            [unarchiver finishDecoding];
-//            NSLog(@"name %@ age %d color %@", obj.name, obj.age,
-//                  obj.color);
-//        }
-    }
-    NSLog(@"%@",peopleFileNames);
-    return people;
+    
+    return [peopleFiles bk_map:^id(NSString *personFilePath) {
+        NSData *data = [[NSMutableData alloc] initWithContentsOfFile:personFilePath];
+        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc]
+                                         initForReadingWithData:data];
+        PopoloPerson *person = [unarchiver decodeObjectForKey:kKeyForEncodePopoloPerson];
+        [unarchiver finishDecoding];
+        return person;
+    }];
 }
 
 - (NSArray *)readOrganizations
@@ -62,17 +61,19 @@
 
 - (void)writePerson:(PopoloPerson *)person
 {
-    NSString *filePath = [[self filePathWithKey:kPeopleFilePathKey] stringByAppendingPathComponent:[person valueForKey:@"id"]];
+    NSString *filePath = [[self peopleFilePath] stringByAppendingString:[person valueForKey:@"id"]];
     NSMutableData *data = [[NSMutableData alloc] init];
     NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc]
                                  initForWritingWithMutableData:data];
     [archiver encodeObject:person forKey:kKeyForEncodePopoloPerson];
     [archiver finishEncoding];
-    BOOL didWrite = [data writeToFile:filePath atomically:YES];
+    NSError *error;
+    BOOL didWrite = [data writeToFile:filePath options:NSDataWritingAtomic error:&error];
     if (didWrite) {
         NSLog(@"did writePerson");
     }
     else{
+        NSLog(@"error:%@",error);
         NSLog(@"did not writePerson");
     }
 }
@@ -86,6 +87,35 @@
     [archiver encodeObject:organization forKey:kKeyForEncodePopoloOrganization];
     [archiver finishEncoding];
     [data writeToFile:filePath atomically:YES];
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        if (![[NSFileManager defaultManager] fileExistsAtPath:[self peopleFilePath]]) {
+            NSError *error;
+            BOOL didCreate = [[NSFileManager defaultManager] createDirectoryAtPath:[self peopleFilePath] withIntermediateDirectories:NO attributes:nil error:&error];
+            if (didCreate) {
+                NSLog(@"didCreate folder");
+            }
+            else{
+                NSLog(@"didCreate folder, error:%@",error);
+            }
+        }
+        NSString *organizationsPath = [self filePathWithKey:kKeyForEncodePopoloOrganization];
+        if (![[NSFileManager defaultManager] fileExistsAtPath:organizationsPath]) {
+            NSError *error;
+            BOOL didCreate = [[NSFileManager defaultManager] createDirectoryAtPath:organizationsPath withIntermediateDirectories:NO attributes:nil error:&error];
+            if (didCreate) {
+                NSLog(@"didCreate folder");
+            }
+            else{
+                NSLog(@"didCreate folder, error:%@",error);
+            }
+        }
+    }
+    return self;
 }
 
 + (id)sharedInstance {

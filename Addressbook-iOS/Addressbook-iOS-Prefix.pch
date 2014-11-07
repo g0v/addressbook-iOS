@@ -17,6 +17,7 @@
     #import "FileManager.h"
     #import "PopoloOrganization.h"
     #import "PopoloPerson.h"
+    #import <BlocksKit.h>
 #endif
 
 // disable NSLog when it's not debug mode

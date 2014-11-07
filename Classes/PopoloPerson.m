@@ -21,10 +21,10 @@ static NSString * const kKeyForEncodeImage = @"kKeyForEncodeImage";
 {
     [aCoder encodeObject:self.name forKey:kKeyForEncodeName];
 
-//    [aCoder encodeObject:self.id forKey:kKeyForEncodeId];
-//    [aCoder encodeObject:self.contact_details forKey:kKeyForEncodeContactDetails];
+    [aCoder encodeObject:self.id forKey:kKeyForEncodeId];
+    [aCoder encodeObject:self.contact_details forKey:kKeyForEncodeContactDetails];
 //    NSString *phone = [[[self valueForKeyPath:@"contact_details"] firstObject] valueForKey:@"value"];
-//    [aCoder encodeObject:self.image forKey:kKeyForEncodeImage];
+    [aCoder encodeObject:self.image forKey:kKeyForEncodeImage];
     
 }
 
@@ -34,8 +34,8 @@ static NSString * const kKeyForEncodeImage = @"kKeyForEncodeImage";
     if(self)
     {
         self.name = [aDecoder decodeObjectForKey:kKeyForEncodeName];
-//        [self setValue:[aDecoder decodeObjectForKey:kKeyForEncodeId] forKey:@"id"];
-//        self.contact_details = [aDecoder decodeObjectForKey:kKeyForEncodeContactDetails];
+        [self setValue:[aDecoder decodeObjectForKey:kKeyForEncodeId] forKey:@"id"];
+        self.contact_details = [aDecoder decodeObjectForKey:kKeyForEncodeContactDetails];
 //        self.image = [aDecoder decodeObjectForKey:kKeyForEncodeImage];
     }
     return self;
